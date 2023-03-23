@@ -1,0 +1,18 @@
+/* .acc:active .account-drawer {
+    right: 0;
+    display: block;
+} */
+
+.account-drawer {
+    position: fixed;
+    right: 100%;
+    z-index: 9999;
+    top: 0;
+    background: #f6f6f6;
+    height: calc(100vh - 30px);
+    overflow-y: scroll;
+    padding: 15px 30px;
+    max-width: 340px;
+    width: 100%;
+    display: none;
+}

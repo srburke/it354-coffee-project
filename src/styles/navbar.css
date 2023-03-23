@@ -21,3 +21,17 @@
 #icon {
     font-size: 1.1rem;
 }
+
+span a,
+span a:hover,
+span a:focus,
+span a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

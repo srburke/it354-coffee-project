@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/navbar.css';
+import Account from './Account.js';
 
 
 const NavBar = () => {
@@ -29,14 +30,8 @@ const NavBar = () => {
                     <form className="d-flex my-2 my-lg-0">
 
 
-                        <span><i className="bi bi-cart" id="icon"></i></span>
-                        <span><a href="/account"><i className="bi bi-person-circle px-3" id="icon"></i></a></span>
-
-
-
-
-
-
+                        <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span>
+                        <span><button className="acc"><i className="bi bi-person-circle px-3" id="icon"></i></button></span>
                     </form>
                 </div>
             </div>
