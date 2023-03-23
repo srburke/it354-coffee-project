@@ -1,6 +1,6 @@
 .navbar {
-    background-color: #6b4d57;
-    color: antiquewhite;
+    background-color: #FFFFFF;
+    color: black;
 } 
 
 .navbar-brand {
@@ -15,13 +15,13 @@
 .nav-link {
     margin-right: 15px;
     margin-left: 15px;
-    color: antiquewhite;
+    color: black;
     font-size: 1.1rem
 }
 
 #icon {
     font-size: 1.1rem;
-    color: antiquewhite;
+    color: black;
 }
 
 span a,

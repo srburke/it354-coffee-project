@@ -16,7 +16,9 @@ const Home = () => {
                                 <li>Caribou Coffee</li>
                             </ul>
                         </div>
-                    <div className="col">Single Serve Cups</div>
+                    <div className="col"><h2>Single Serve Cups</h2>
+                    <p> We sell a wide range of brands in single serve cups. These will work in any coffee machiene that takes single serve cups, including Kerig coffee makers</p>
+                    </div>
                 </div>
             </div>
         </div>
