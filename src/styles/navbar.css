@@ -1,0 +1,23 @@
+/* .navbar {
+    background-color: #EFF9F0;
+} */
+
+.navbar-brand {
+    font-size: 3rem;
+    font-family: 'Abril Fatface';
+}
+
+.nav-item {
+    font-family: 'Heebo';
+}
+
+.nav-link {
+    margin-right: 15px;
+    margin-left: 15px;
+    color: black;
+    font-size: 1.1rem
+}
+
+#icon {
+    font-size: 1.1rem;
+}
