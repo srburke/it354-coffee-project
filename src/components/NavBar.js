@@ -25,7 +25,9 @@ const NavBar = () => {
                         <li className="nav-item">
                             <a className="nav-link" href="/single">Single Serve</a>
                         </li>
-
+                        <li className="nav-item">
+                            <a className="nav-link" href="/single">About Us</a>
+                        </li>
                     </ul>
                     <form className="d-flex my-2 my-lg-0">
 
