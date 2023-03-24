@@ -20,16 +20,18 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="navbar-nav m-auto mt-2 mt-lg-0 nav justify-content-center">
                         <li className="nav-item">
-                            <a className="nav-link active" href="/" aria-current="page">Home <span
+                            <a className="nav-link" href="/" aria-current="page">Home <span
                                 className="visually-hidden">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/coffee">Coffee Bags</a>
+                            <a className="nav-link" href="/coffee">Coffee Beans</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/single">Single Serve</a>
                         </li>
-
+                        <li className="nav-item">
+                            <a className="nav-link" href="/single">About Us</a>
+                        </li>
                     </ul>
                     <form className="d-flex my-2 my-lg-0">
 

@@ -1,6 +1,7 @@
-/* .navbar {
-    background-color: #EFF9F0;
-} */
+.navbar {
+    background-color: #FFFFFF;
+    color: black;
+} 
 
 .navbar-brand {
     font-size: 3rem;
@@ -20,6 +21,7 @@
 
 #icon {
     font-size: 1.1rem;
+    color: black;
 }
 
 span a,
