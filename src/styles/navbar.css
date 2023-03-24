@@ -30,8 +30,23 @@ span a:active {
     color: inherit;
 }
 
-.navbar button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+
+
+/* .acc:enabled {
+    right: 0;
+    display: block;
 }
+
+.acc {
+    position: fixed;
+    right: 100%;
+    z-index: 9999;
+    top: 0;
+    background: #f6f6f6;
+    height: calc(100vh - 30px);
+    overflow-y: scroll;
+    padding: 15px 30px;
+    max-width: 340px;
+    width: 100%;
+    display: none;
+} */

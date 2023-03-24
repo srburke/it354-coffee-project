@@ -1,9 +1,13 @@
 import React from 'react'
 import '../styles/navbar.css';
 import Account from './Account.js';
+import { useState } from 'react';
 
 
 const NavBar = () => {
+
+    const [showAccount, setAccount] = useState(false);
+
     return (
         <nav className="navbar navbar-expand-sm">
             <div className="container">
@@ -31,7 +35,15 @@ const NavBar = () => {
 
 
                         <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span>
-                        <span><button className="acc"><i className="bi bi-person-circle px-3" id="icon"></i></button></span>
+                        <span><button onClick={(e) => {
+                            e.preventDefault();
+                            setAccount(!showAccount);
+                        }}><i className="bi bi-person-circle px-3" id="icon"></i></button>
+                            {showAccount && (
+                                <Account />
+                            )}</span>
+
+
                     </form>
                 </div>
             </div>
