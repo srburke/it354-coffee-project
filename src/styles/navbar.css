@@ -1,11 +1,12 @@
 .navbar {
-    background-color: #FFFFFF;
-    color: black;
-} 
+    background-color: #6b4d57;
+    color: antiquewhite;
+}
 
 .navbar-brand {
     font-size: 3rem;
     font-family: 'Abril Fatface';
+    color: antiquewhite
 }
 
 .nav-item {
@@ -15,13 +16,13 @@
 .nav-link {
     margin-right: 15px;
     margin-left: 15px;
-    color: black;
+    color: antiquewhite;
     font-size: 1.1rem
 }
 
 #icon {
     font-size: 1.1rem;
-    color: black;
+    color: antiquewhite;
 }
 
 span a,
