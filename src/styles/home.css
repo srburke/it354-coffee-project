@@ -1,16 +1,33 @@
-/* body {
-    background-color: white;
-} */
-
 #home {
     padding-top: 3em;
-    background-color: #f6f6f6;
+    overflow: hidden;
+    /* color: rgb(121, 68, 59); */
+
 }
+
+/* #home::after {
+    content: '';
+    position: absolute;
+    left: 20%;
+    width: 100%;
+    height: 200%;
+    background-color: rgb(246, 246, 246);
+
+    background-color: rgb(121, 68, 59);
+    top: 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+} */
 
 #about {
     background: white;
     border-radius: 15px;
+    position: relative;
+    z-index: 1;
+
 }
+
 
 /* 
 #test {
