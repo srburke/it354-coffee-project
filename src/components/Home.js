@@ -5,6 +5,7 @@ const Home = () => {
     return (
         <div className="container-fluid" id="home">
             <div className='container' id="about">
+                <img src="public/images/coffeeBeans.jpg"></img>
                 <div className="row justify-content-center align-items-center g-2">
                     <div className="col">
 
