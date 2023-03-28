@@ -6,7 +6,7 @@ import Cart from './components/Cart';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
-
+const {products} = props
   return (
     <>
       <NavBar />
@@ -18,6 +18,7 @@ function App() {
       </Routes>
 
     </>
+   
   );
 }
 

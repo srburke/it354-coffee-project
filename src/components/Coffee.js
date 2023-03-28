@@ -4,7 +4,7 @@ import '../styles/style.css'
 const Coffee = () => {
     return (
 
-        <div className="container text-center" style={{ paddingTop: "3rem" }}>
+       <div className="container text-center" style={{ paddingTop: "3rem" }}>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
                 <div className="col">
                     <div className="card mb-3" style={{
@@ -25,12 +25,11 @@ const Coffee = () => {
                     </div >
                 </div>
                 <div className="col">Column</div>
-                <div className="col">Column</div>
-                <div className="col">Column</div>
-            </div>
-        </div>
+               <div className="col">Column</div>
+              <div className="col">Column</div>
+          </div>    </div>
 
-    )
-}
+               );
+             }
 
 export default Coffee

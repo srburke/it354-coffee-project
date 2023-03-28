@@ -50,7 +50,7 @@ const NavBar = () => {
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
 export default NavBar
