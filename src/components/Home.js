@@ -1,11 +1,13 @@
 import React from 'react'
 import '../styles/home.css';
 
+
+
 const Home = () => {
     return (
         <div className="container-fluid" id="home">
             <div className='container' id="about">
-               
+               <img src="./images/coffeeBeans.png" alt="Coffee Beans" />
                 <div className="row justify-content-center align-items-center g-2">
                     <div className="col">
 
