@@ -28,7 +28,10 @@
 
 }
 
-
+.images{
+    width: 200px;
+    height: auto;
+}
 /* 
 #test {
 
