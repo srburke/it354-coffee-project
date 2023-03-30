@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/style.css'
 import '../styles/coffee.css'
 import {Row, Col} from 'react-bootstrap';
-import {productsArray} from '../productsStore'
+import {productsArray} from './productsStore.js'
 
 const Coffee = () => {
     return (
@@ -45,7 +45,7 @@ const Coffee = () => {
         //         <div className="col">Column</div>
         //     </div>    </div>
 
-    );
+    )
 }
 
 export default Coffee;
