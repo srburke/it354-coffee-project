@@ -7,7 +7,7 @@
 .navbar-brand {
     font-size: 3rem;
     font-family: 'Abril Fatface';
-    color: antiquewhite
+    color: antiquewhite;
 }
 
 .nav-item {
@@ -24,6 +24,14 @@
 #icon {
     font-size: 1.1rem;
     color: antiquewhite;
+}
+
+#link,
+#link:hover,
+#link:focus,
+#link:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 span a,

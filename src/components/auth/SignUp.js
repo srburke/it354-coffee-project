@@ -6,10 +6,9 @@ import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/style.css'
 
-const SignUp = (showAccount, setAccount) => {
+const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [showSignUp, setSignUp] = useState(true);
     const navigate = useNavigate
 
     const signUp = async () => {
@@ -34,7 +33,7 @@ const SignUp = (showAccount, setAccount) => {
 
     return (
         <>
-            <Card>
+            <Card className="signIn-card">
                 <Card.Body>
                     <h2 className='text-center mb-4' style={{ color: "black" }}>Create Account</h2>
                     <Form>
@@ -50,7 +49,7 @@ const SignUp = (showAccount, setAccount) => {
                                 <input type="password" onChange={(e) => setPassword(e.target.value)} class="form-control" name="" id="" placeholder="" required></input>
                             </div>
                         </Form.Group>
-                        <Button className="w-100" onClick={() => signUp() + setSignUp(false)}>
+                        <Button className="w-100" onClick={signUp}>
                             Sign Up
                         </Button>
 

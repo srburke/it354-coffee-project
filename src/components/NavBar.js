@@ -2,13 +2,9 @@ import React from 'react'
 import '../styles/navbar.css';
 import Account from './Account.js';
 import { useState } from 'react';
-import SignIn from '../components/auth/SignIn';
-import AuthDetails from '../components/auth/AuthDetails';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
-
-    const [showAccount, setAccount] = useState(false);
-
     return (
         <nav className="navbar navbar-expand-sm">
             <div className="container">
@@ -21,30 +17,25 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="navbar-nav m-auto mt-2 mt-lg-0 nav justify-content-center">
                         <li className="nav-item">
-                            <a className="nav-link" href="/" aria-current="page">Home <span
-                                className="visually-hidden">(current)</span></a>
+                            <Link to='/' id="link" className="nav-link" aria-current="page">Home<span
+                                className="visually-hidden">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/coffee">Coffee Beans</a>
+                            <Link to='/coffee' className="nav-link" id="link">Coffee Beans</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/single">Single Serve</a>
+                            <Link to='/single' className="nav-link" id="link">Single Serve</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/single">About Us</a>
+                            <Link to='/about' className="nav-link" id="link">About Us</Link>
                         </li>
                     </ul>
                     <form className="d-flex my-2 my-lg-0">
 
 
                         <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span>
-                        <span><button onClick={(e) => {
-                            e.preventDefault();
-                            setAccount(!showAccount);
-                        }}><i className="bi bi-person-circle px-3" id="icon"></i></button>
-                            {showAccount && (
-                                <AuthDetails />
-                            )}</span>
+                        <span><Link to="/account"><i className="bi bi-person-circle px-3" id="icon"></i></Link>
+                        </span>
 
 
                     </form>

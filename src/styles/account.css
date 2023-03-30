@@ -7,8 +7,17 @@ button {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    z-index: 1;
 }
 
 .account-drawer {
     display: none;
+}
+
+/**Need to do styling, this is just to see what's going on **/
+#account {
+    background-color: #f6f6f6;
+    position: relative;
+    border-radius: 15px;
+    margin-top: 3rem;
 }
