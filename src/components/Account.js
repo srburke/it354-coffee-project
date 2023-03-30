@@ -1,24 +1,46 @@
 import React from 'react'
 import '../styles/account.css';
-import SignUp from './auth/SignUp';
 import SignIn from './auth/SignIn';
-import AuthDetails from './auth/AuthDetails';
+import { auth } from '../config/firebase';
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Account = () => {
 
     // const [showAccount, setAccount] = useState(true);
-    function handle(e) {
-        e.preventDefault();
+    const [authUser, setAuthUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const listen = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setAuthUser(user)
+            } else {
+                setAuthUser(null);
+            }
+        })
+
+        return () => {
+            listen();
+        }
+    }, [])
+
+    const userSignOut = () => {
+        signOut(auth).then(() => {
+            console.log("Sign out successful")
+            navigate('/');
+        }).catch(error => console.log(error))
     }
 
     return (
-        <div className="d-flex align-items-center justify-content-center">
 
-            <div className="w-100 h-100" style={{ maxWidth: "350px" }}>
+        //Need to improve
 
-
+        // <button onClick={userSignOut}>Sign Out</button>
+        <div className='container' id="account">
+            <div>{authUser ? <><p>{`Signed in as ${authUser.email}`}</p><button onClick={userSignOut}>Sign Out</button></> : <SignIn />}
             </div>
-
         </div>
 
     )
