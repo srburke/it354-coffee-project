@@ -4,9 +4,9 @@ import '../styles/coffee.css'
 import {Row, Col} from 'react-bootstrap';
 import {productsArray} from './productsStore.js'
 
-const Coffee = () => {
+function Coffee() {
     return (
-        <>
+        <div className="bg">
         <body>
         <h1> Welcome to the store!</h1>
         <Row xs={1} md={3} className="g-4">
@@ -19,7 +19,7 @@ const Coffee = () => {
             
         </Row>
         </body>
-        </>
+        </div>
         // <div className="container text-center" style={{ paddingTop: "3rem" }}>
         //     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
         //         <div className="col">

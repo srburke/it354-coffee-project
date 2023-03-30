@@ -10,7 +10,7 @@ const NavBar = () => {
     const [showAccount, setAccount] = useState(false);
 
     return (
-        <nav className="navbar navbar-expand-sm">
+        <nav className="navbar navbar-expand-sm navbar-dark">
             <div className="container">
                 <a className="navbar-brand" href="/">Coffee</a>
                 <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"

@@ -9,6 +9,7 @@ import SignUp from './components/auth/SignUp';
 import AuthDetails from './components/auth/AuthDetails';
 import { Routes, Route } from 'react-router-dom';
 import { AuthContextProvider } from './components/auth/AuthDetails';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   //const {products} = props
