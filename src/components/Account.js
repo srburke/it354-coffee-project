@@ -1,6 +1,8 @@
 import React from 'react'
 import '../styles/account.css';
-import SignUp from './SignUp';
+import SignUp from './auth/SignUp';
+import SignIn from './auth/SignIn';
+import AuthDetails from './auth/AuthDetails';
 
 const Account = () => {
 
@@ -10,14 +12,11 @@ const Account = () => {
     }
 
     return (
-        <div className="d-flex align-items-center justify-content-center account-drawer closeBtn" id="account-drawer">
+        <div className="d-flex align-items-center justify-content-center">
 
             <div className="w-100 h-100" style={{ maxWidth: "350px" }}>
-                <button onClick={(e) => {
-                    this.handle(e)
-                }}
-                    className="closeBtn"> <i className="bi bi-x-lg"></i></button>
-                <SignUp />
+
+
             </div>
 
         </div>

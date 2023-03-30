@@ -1,15 +1,16 @@
 import React from 'react'
 import '../styles/style.css'
+import '../styles/coffee.css'
 
 const Coffee = () => {
     return (
 
-       <div className="container text-center" style={{ paddingTop: "3rem" }}>
+        <div className="container text-center" style={{ paddingTop: "3rem" }}>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
                 <div className="col">
                     <div className="card mb-3" style={{
                         maxwidth: "540px"
-                    }}>
+                    }} id="item-card">
                         <div className="row g-0">
                             <div className="col-md-4">
                                 <img src="https://github.com/srburke/it354-coffee-project/blob/ed4ae02aa2f5ddb1d9cc09e7e8e4d9ba7a0345e9/src/images/starbucksmidroast.png" className="img-fluid rounded-start" alt="..."></img>
@@ -25,11 +26,11 @@ const Coffee = () => {
                     </div >
                 </div>
                 <div className="col">Column</div>
-               <div className="col">Column</div>
-              <div className="col">Column</div>
-          </div>    </div>
+                <div className="col">Column</div>
+                <div className="col">Column</div>
+            </div>    </div>
 
-               );
-             }
+    );
+}
 
 export default Coffee

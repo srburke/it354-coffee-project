@@ -2,7 +2,8 @@ import React from 'react'
 import '../styles/navbar.css';
 import Account from './Account.js';
 import { useState } from 'react';
-
+import SignIn from '../components/auth/SignIn';
+import AuthDetails from '../components/auth/AuthDetails';
 
 const NavBar = () => {
 
@@ -42,7 +43,7 @@ const NavBar = () => {
                             setAccount(!showAccount);
                         }}><i className="bi bi-person-circle px-3" id="icon"></i></button>
                             {showAccount && (
-                                <Account />
+                                <AuthDetails />
                             )}</span>
 
 

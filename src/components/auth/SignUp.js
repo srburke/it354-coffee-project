@@ -1,19 +1,22 @@
 import React from 'react'
 import { useState } from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
-import { auth, googleProvider } from '../config/firebase'
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { auth, googleProvider } from '../../config/firebase'
+import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
+import { Link, useNavigate } from 'react-router-dom';
+import '../../styles/style.css'
 
-const SignUp = () => {
+const SignUp = (showAccount, setAccount) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showSignUp, setSignUp] = useState(true);
+    const navigate = useNavigate
 
-
-    console.log(auth?.currentUser?.email);
-
-    const signIn = async () => {
+    const signUp = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const user = await createUserWithEmailAndPassword(auth, email, password);
+            navigate('/account')
+            console.log(user)
         } catch (err) {
             console.error(err);
         }
@@ -29,19 +32,11 @@ const SignUp = () => {
 
     };
 
-    const logout = async () => {
-        try {
-            await signOut(auth);
-        } catch (err) {
-            console.error(err)
-        }
-    };
-
     return (
         <>
             <Card>
                 <Card.Body>
-                    <h2 className='text-center mb-4' style={{ color: "black" }}>Sign Up</h2>
+                    <h2 className='text-center mb-4' style={{ color: "black" }}>Create Account</h2>
                     <Form>
                         <Form.Group id="email">
                             <div className="mb-3">
@@ -55,7 +50,7 @@ const SignUp = () => {
                                 <input type="password" onChange={(e) => setPassword(e.target.value)} class="form-control" name="" id="" placeholder="" required></input>
                             </div>
                         </Form.Group>
-                        <Button className="w-100" onClick={signIn}>
+                        <Button className="w-100" onClick={() => signUp() + setSignUp(false)}>
                             Sign Up
                         </Button>
 
@@ -64,10 +59,9 @@ const SignUp = () => {
                         </Button>
                     </Form>
                 </Card.Body>
+
             </Card>
-            <div className="w-100 text-center mt-2" style={{ color: "black" }}>
-                Already have an account? Log In
-            </div>
+
         </>
     )
 }
