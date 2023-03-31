@@ -3,9 +3,15 @@ import '../styles/navbar.css';
 import Account from './Account.js';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import {Button, container, Modal} from 'react-bootstrap';
+
 
 const NavBar = () => {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
+        <>
         <nav className="navbar navbar-expand-sm navbar-dark">
             <div className="container">
                 <a className="navbar-brand" href="/">Coffee</a>
@@ -33,7 +39,8 @@ const NavBar = () => {
                     <form className="d-flex my-2 my-lg-0">
 
 
-                        <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span>
+                     {/* <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span> */}
+                    <Button onClick={handleShow} className="bi bi-cart" id="icon"></Button>
                         <span><Link to="/account"><i className="bi bi-person-circle px-3" id="icon"></i></Link>
                         </span>
 
@@ -42,6 +49,9 @@ const NavBar = () => {
                 </div>
             </div>
         </nav>
+
+        <Modal show={show} onHide={handleClose}></Modal>
+        </>
     );
 }
 
