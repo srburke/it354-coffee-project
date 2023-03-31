@@ -12,7 +12,7 @@ const productsArray = [
     },
     {
         id: "3",
-        title: "Coffee pads 15ct",
+        title: "Coffee pods 15ct",
         price: "$12.99"
     },
 ]
