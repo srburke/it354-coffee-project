@@ -23,9 +23,6 @@ function App() {
         <Route path='/coffee' element={<Coffee />} />
         <Route path='/single' element={<Single />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/account' element={<Account />} />
-        <Route path='/account/signin' element={<SignIn />} />
-        <Route path='/account/signup' element={<SignUp />} />
       </Routes>
 
 

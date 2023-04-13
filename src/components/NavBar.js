@@ -1,6 +1,8 @@
 import React from 'react'
 import '../styles/navbar.css';
 import Account from './Account.js';
+import SignIn from '../components/auth/SignIn.js';
+import SignUp from '../components/auth/SignUp.js';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {Button, container, Modal} from 'react-bootstrap';
@@ -12,7 +14,7 @@ const NavBar = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-        <nav className="navbar navbar-expand-sm navbar-dark">
+        <nav className="navbar navbar-expand-md navbar-dark">
             <div className="container">
                 <a className="navbar-brand" href="/">Coffee</a>
                 <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
@@ -41,16 +43,45 @@ const NavBar = () => {
 
                      {/* <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span> */}
                     <Button onClick={handleShow} className="bi bi-cart" id="icon"></Button>
-                        <span><Link to="/account"><i className="bi bi-person-circle px-3" id="icon"></i></Link>
-                        </span>
-
-
+                            
+                    <button
+                    type="button"
+                    className="bi bi-person-circle px-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#accountModal"
+                    id="icon"
+                    >
+                    </button>
                     </form>
                 </div>
             </div>
         </nav>
 
-        <Modal show={show} onHide={handleClose}></Modal>
+            <Modal show={show} onHide={handleClose}></Modal>
+            <div
+                className="modal fade in"
+                id="accountModal"
+                tabindex="-1"
+                aria-labelledby="accountModalLabel"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog modal-dialog-scrollable">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <button
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            style={{ marginRight: '30rem' }}
+                            ></button>
+                        </div>
+                        <div className="modal-body">
+                            <Account />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

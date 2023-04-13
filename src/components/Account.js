@@ -39,7 +39,7 @@ const Account = () => {
 
         // <button onClick={userSignOut}>Sign Out</button>
         <div className='container' id="account">
-            <div>{authUser ? <><p>{`Signed in as ${authUser.email}`}</p><button onClick={userSignOut}>Sign Out</button></> : <SignIn />}
+            <div>{authUser ? <><p>{`Signed in as ${authUser.email}`}</p><button onClick={userSignOut} className="sign-out">Sign Out</button></> : <SignIn />}
             </div>
         </div>
 

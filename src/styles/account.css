@@ -10,14 +10,12 @@ button {
     z-index: 1;
 }
 
-.account-drawer {
-    display: none;
-}
-
-/**Need to do styling, this is just to see what's going on **/
-#account {
-    background-color: #f6f6f6;
-    position: relative;
+.sign-out {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    padding: 5px 0;
+    background: #0d6efd;
     border-radius: 15px;
-    margin-top: 3rem;
+    color: #ffffff;
 }

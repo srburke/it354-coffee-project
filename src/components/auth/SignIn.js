@@ -17,7 +17,6 @@ const SignIn = () => {
 
     const signIn = async () => {
         signInWithEmailAndPassword(auth, email, password)
-        navigate('/account')
             .then((userCredential) => {
                 console.log(userCredential)
             }).catch((error) => {
@@ -30,7 +29,6 @@ const SignIn = () => {
     const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
-            navigate('/account')
         } catch (err) {
             console.error(err);
         }
@@ -39,10 +37,7 @@ const SignIn = () => {
 
     return (
         <>
-            <div className="container" >
-                <div className="container" id="signIn-drawer">
-                    <div class="row justify-content-center align-items-center g-2">
-                        <div class="col" id="signIn-col">
+                            
                             <Card className="signIn-card">
                                 <Card.Body>
                                     <h2 className='text-center mb-4' style={{ color: "black" }}>Sign In</h2>
@@ -69,13 +64,12 @@ const SignIn = () => {
                                     </Form>
                                 </Card.Body>
 
-                            </Card>
-                        </div>
-                        <div class="col" id="signText"><span>OR</span></div>
-                        <div class="col" id="signUp-col"><SignUp /></div>
-                    </div>
-                </div>
-            </div>
+            </Card>
+            <span className="cardOption">OR</span>
+            <SignUp />
+                       
+                     
+          
 
 
 

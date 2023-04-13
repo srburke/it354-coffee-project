@@ -14,7 +14,6 @@ const SignUp = () => {
     const signUp = async () => {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
-            navigate('/account')
             console.log(user)
         } catch (err) {
             console.error(err);
@@ -33,7 +32,7 @@ const SignUp = () => {
 
     return (
         <>
-            <Card className="signIn-card">
+            <Card className="signUp-card">
                 <Card.Body>
                     <h2 className='text-center mb-4' style={{ color: "black" }}>Create Account</h2>
                     <Form>

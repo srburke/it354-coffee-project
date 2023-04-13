@@ -34,64 +34,18 @@ h2 {
 }
 
 
-.signIn-card {
+.signIn-card, .signUp-card {
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 
 }
 
-
-#signIn-drawer {
-    position: relative;
-    z-index: 1;
-    border-radius: 15px;
-    padding: 4rem 4rem;
-}
-
-#signText {
+.cardOption {
+    display: block;
     color: black;
-    position: relative;
-    z-index: 1;
     text-align: center;
     font-family: 'Heebo';
-}
-
-#signIn-col {
-    margin-left: 2rem;
-}
-
-#signUp-col {
-    margin-right: 2rem;
-}
-
-.account-drawer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    height: calc(100vh - 140px);
-    overflow-y: scroll;
-    padding: 15px 30px;
-    max-width: 320px;
-    width: 100%;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-    transition: all 300ms ease-in-out;
-    display: block;
-
-}
-
-.hide-drawer {
-    right: 0;
-    display: none;
-}
-
-.close-Btn {
-    position: absolute;
-    z-index: 9999;
-    right: 15%;
-    top: 20px;
-}
-
-.hide-btn {
-    display: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
