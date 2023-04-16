@@ -41,9 +41,21 @@ const NavBar = () => {
                     <form className="d-flex my-2 my-lg-0">
 
 
+                   
                      {/* <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span> */}
                     <Button onClick={handleShow} className="bi bi-cart" id="icon"></Button>
-                            
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Shopping Cart</Modal.Title>
+                        <Modal.Body>
+                        <h1>This is the modal body</h1>
+                        </Modal.Body>
+                        </Modal.Header>
+                    </Modal>
+
+
+
+
                     <button
                     type="button"
                     className="bi bi-person-circle px-3"
