@@ -38,12 +38,23 @@ const NavBar = () => {
                             <Link to='/about' className="nav-link" id="link">About Us</Link>
                         </li>
                     </ul>
-                    <form className="d-flex my-2 my-lg-0">
-
 
                    
                      {/* <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span> */}
                     <Button onClick={handleShow} className="bi bi-cart" id="icon"></Button>
+
+                    <form className="d-flex my-2 my-lg-0">
+                    <button
+                    type="button"
+                    className="bi bi-person-circle px-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#accountModal"
+                    id="icon"></button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div className = "cartModal">
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                         <Modal.Title>Shopping Cart</Modal.Title>
@@ -52,23 +63,7 @@ const NavBar = () => {
                         </Modal.Body>
                         </Modal.Header>
                     </Modal>
-
-
-
-
-                    <button
-                    type="button"
-                    className="bi bi-person-circle px-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#accountModal"
-                    id="icon"
-                    >
-                    </button>
-                    </form>
-                </div>
             </div>
-        </nav>
-
             <Modal show={show} onHide={handleClose}></Modal>
             <div
                 className="modal fade in"

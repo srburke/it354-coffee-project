@@ -55,3 +55,8 @@ span a:active {
     background: #f6f6f6;
 }
 
+.cartModal {
+    background: antiquewhite;
+    max-width: 80%;
+    max-height: fit-content;
+}
