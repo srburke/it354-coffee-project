@@ -1,7 +1,5 @@
 import { createContext, useState} from "react";
-import { productsArray } from "./productsStore";
-import Cart from "./Cart";
-import context from "react-bootstrap/esm/AccordionContext";
+import { productsArray, getProductData } from "./productsStore";
 
  export const CartContext = createContext({
     items :[],
@@ -13,6 +11,7 @@ import context from "react-bootstrap/esm/AccordionContext";
 });
 
 export function CartProvider({children}){
+
 const [cartProducts, setCartProducts]= useState([]);
 
 
@@ -32,7 +31,7 @@ function addOneToCart(id){
     if(quantity === 0){// product is not in cart
             setCartProducts(
                 [
-                    ...cartProducts{
+                    ...cartProducts,{
                         id: id,
                         quantity: 1
                     }
@@ -74,7 +73,15 @@ function deleteFromCart(id){
     )
 }
 
+function getTotalCost(){
+    let totalCost = 0
+    cartProducts.map((cartItem) => {
+            const productData = getProductData(cartItem.id);
+            totalCost += (productData.price * cartItem.quantity);
 
+    });
+    return totalCost;
+}
 
 const contextValue = {
     items: cartProducts,
@@ -82,7 +89,7 @@ const contextValue = {
     addOneToCart,
     removeOneFromCart,
     deleteFromCart,
-    getTotalCost,
+    getTotalCost
 }
 
     return(
@@ -91,3 +98,6 @@ const contextValue = {
         </CartContext.Provider>
     )
 }
+
+
+export default CartProvider;

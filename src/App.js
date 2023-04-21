@@ -10,12 +10,14 @@ import SignUp from './components/auth/SignUp';
 import { Routes, Route } from 'react-router-dom';
 //import { AuthContextProvider } from './components/auth/AuthDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CartProvider from './components/CartContext';
 
 function App() {
   //const {products} = props
 
   return (
     <>
+    <CartProvider>
       <NavBar />
   
       <Routes>
@@ -25,7 +27,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
       </Routes>
 
-
+</CartProvider>
 
 
     </>
