@@ -56,7 +56,8 @@ span a:active {
 }
 
 .cartModal {
-    background: antiquewhite;
+  
     max-width: 80%;
-    max-height: fit-content;
+    max-height: 50%;
+    align-content: center;
 }

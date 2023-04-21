@@ -39,6 +39,17 @@ const NavBar = () => {
                         </li>
                     </ul>
 
+                    <Modal show={show} onHide={handleClose} >
+                        <Modal.Header closeButton>
+                        <Modal.Title>Shopping Cart</Modal.Title>
+                        <Modal.Body>
+                        <h1>This is the modal body</h1>
+                        </Modal.Body>
+                        </Modal.Header>
+                    </Modal>
+                    <div
+                    className = "cartModal modal fade in"></div>
+
                    
                      {/* <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span> */}
                     <Button onClick={handleShow} className="bi bi-cart" id="icon"></Button>
@@ -54,16 +65,7 @@ const NavBar = () => {
                 </div>
             </div>
         </nav>
-        <div className = "cartModal">
-                    <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                        <Modal.Title>Shopping Cart</Modal.Title>
-                        <Modal.Body>
-                        <h1>This is the modal body</h1>
-                        </Modal.Body>
-                        </Modal.Header>
-                    </Modal>
-            </div>
+        
             <Modal show={show} onHide={handleClose}></Modal>
             <div
                 className="modal fade in"
