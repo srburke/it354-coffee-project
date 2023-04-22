@@ -51,6 +51,7 @@ function addOneToCart(id) {
 }
 
 function removeOneFromCart(id) {
+    
     const quantity = getProductQuantity(id);
 
     if(quantity == 1) {
