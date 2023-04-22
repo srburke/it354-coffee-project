@@ -85,7 +85,7 @@ const NavBar = () => {
                     </Modal>
           </div>
 
-          <Modal show={show} onHide={handleClose}></Modal> 
+           {/* <Modal show={show} onHide={handleClose}></Modal> */}
             <div
                 className="modal fade in"
                 id="accountModal"
