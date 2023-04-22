@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/style.css';
 import '../styles/coffee.css';
 import {Row, Col} from 'react-bootstrap';
-import {productsArray} from './productsStore.js';
+import {productsArray} from './productsStore';
 import ProductCard from '../components/ProductCard';
 
 function Coffee() {

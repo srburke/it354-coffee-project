@@ -17,7 +17,7 @@ const [cartProducts, setCartProducts]= useState([]);
 
 // Cart Functions
 function getProductQuantity(id){
-    cartProducts.find(product => product.id === id)?.quantity
+    const quantity = cartProducts.find(product => product.id === id)?.quantity
 
     if (quantity === undefined){
         return 0;
@@ -25,40 +25,43 @@ function getProductQuantity(id){
     return quantity;
 }
 
-function addOneToCart(id){
+function addOneToCart(id) {
     const quantity = getProductQuantity(id);
 
-    if(quantity === 0){// product is not in cart
-            setCartProducts(
-                [
-                    ...cartProducts,{
-                        id: id,
-                        quantity: 1
-                    }
-                ]
-            )
-    }else{ //product is in cart
+    if (quantity === 0) { // product is not in cart
+        setCartProducts(
+            [
+                ...cartProducts,
+                {
+                    id: id,
+                    quantity: 1
+                }
+            ]
+        )
+    } else { 
         setCartProducts(
             cartProducts.map(
-                product.id === id
-                ? {...product, quantity: product.quantity} // if statement is true
-                : product                                  //if statement is false
+                product =>
+                product.id === id                                // if condition
+                ? { ...product, quantity: product.quantity + 1 } // if statement is true
+                : product                                        // if statement is false
             )
         )
     }
 }
 
-function removeOneFromCart(id){
+function removeOneFromCart(id) {
     const quantity = getProductQuantity(id);
 
-    if(quantity ==1){
+    if(quantity == 1) {
         deleteFromCart(id);
-    }else{
+    } else {
         setCartProducts(
             cartProducts.map(
-                product.id === id
-                ? {...product, quantity: product.quantit -1} // if statement is true
-                : product                                  //if statement is false
+                product =>
+                product.id === id                                
+                ? { ...product, quantity: product.quantity - 1 } // if statement is true
+                : product                                        // if statement is false
             )
         )
     }
