@@ -61,10 +61,11 @@ const NavBar = () => {
             </div>
         </nav>
 
-        <div className = "cartModal">
+    
         <Modal show={show} onHide={handleClose} className ="Modal" overlayClassName="Overlay">
                         <Modal.Header closeButton>
                         <Modal.Title>Shopping Cart</Modal.Title>
+                        </Modal.Header>
                         <Modal.Body>
                             {productsCount > 0 ?
                             <>
@@ -81,9 +82,8 @@ const NavBar = () => {
                                 :<h1>There are no items in your cart!</h1>
                         }
                         </Modal.Body>
-                        </Modal.Header>
                     </Modal>
-          </div>
+         
 
            {/* <Modal show={show} onHide={handleClose}></Modal> */}
             <div
@@ -111,7 +111,7 @@ const NavBar = () => {
                 </div>
             </div>
         </>
-    );
+    )
 }
 
-export default NavBar
+export default NavBar;
