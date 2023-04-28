@@ -70,7 +70,7 @@ const NavBar = () => {
                             <>
                                 <p>Items in your cart:</p>
                                 {cart.items.map( (currentProduct, idx) => (
-                                            <h1>{currentProduct.title}</h1>
+                                       <CartProduct key={idx} id={currentProduct.id} quantity={currentProduct.quantity}></CartProduct>
                                 ))}
                                  <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
                                 <Button variant="success">
