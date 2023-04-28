@@ -1,7 +1,7 @@
 import {Card, Button, Form, Row, Col} from 'react-bootstrap';
 import { CartContext } from './CartContext';
 import { useContext } from 'react';
-
+import '../styles/productCard.css';
 
 function ProductCard(props){
     const product = props.product
@@ -12,6 +12,7 @@ function ProductCard(props){
     return(
         <Card>
             <Card.Body>
+                <Card.Img variant="top" src={product.Image} className="images" />
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>{product.price}</Card.Text>
                 {productQuantity > 0  ?

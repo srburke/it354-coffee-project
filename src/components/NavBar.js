@@ -62,7 +62,7 @@ const NavBar = () => {
         </nav>
 
     
-        <Modal show={show} onHide={handleClose} className ="Modal" overlayClassName="Overlay">
+        <Modal show={show} onHide={handleClose} >
                         <Modal.Header closeButton>
                         <Modal.Title>Shopping Cart</Modal.Title>
                         </Modal.Header>

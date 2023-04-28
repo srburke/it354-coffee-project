@@ -2,18 +2,21 @@
 const productsArray = [
     {
         id: "1",
-        title: "Coffee 1",
-        price: "7.99"
+        title: "Starbucks Spring Day Blend",
+        price: "17.49",
+        Image: "./images/StarSpringDayBlend.jpeg"
     },
     {
         id: "2",
-        title: "Coffee 2",
-        price: "6.99"
+        title: "Starbucks Caffè Verona",
+        price: "10.00",
+        Image: "./images/StarCaffeVerona.jpeg"
     },
     {
         id: "3",
         title: "Coffee pods 15ct",
-        price: "12.99"
+        price: "12.99",
+        Image: "coffeeBeans.jpg"
     },
 ]
 
