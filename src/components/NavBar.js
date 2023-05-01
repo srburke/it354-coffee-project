@@ -3,9 +3,9 @@ import '../styles/navbar.css';
 import Account from './Account.js';
 import SignIn from '../components/auth/SignIn.js';
 import SignUp from '../components/auth/SignUp.js';
-import { useState, useContext} from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {Button, container, Modal} from 'react-bootstrap';
+import { Button, container, Modal } from 'react-bootstrap';
 import CartProvider, { CartContext } from './CartContext';
 import CartProduct from './CartProduct.js'
 
@@ -20,72 +20,118 @@ const NavBar = () => {
 
     return (
         <>
-        <nav className="navbar navbar-expand-md navbar-dark">
-            <div className="container">
-                <a className="navbar-brand" href="/">Coffee</a>
-                <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="collapsibleNavId">
-                    <ul className="navbar-nav m-auto mt-2 mt-lg-0 nav justify-content-center">
-                        <li className="nav-item">
-                            <Link to='/' id="link" className="nav-link" aria-current="page">Home<span
-                                className="visually-hidden">(current)</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to='/coffee' className="nav-link" id="link">Coffee Beans</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to='/single' className="nav-link" id="link">Single Serve</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to='/about' className="nav-link" id="link">About Us</Link>
-                        </li>
-                    </ul>
+            <nav className="navbar navbar-expand-md navbar-dark">
+                <div className="container">
+                    <a className="navbar-brand" href="/">Coffee</a>
+                    <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="collapsibleNavId">
+                        <ul className="navbar-nav m-auto mt-2 mt-lg-0 nav justify-content-center">
+                            <li className="nav-item">
+                                <Link to='/' id="link" className="nav-link" aria-current="page">Home<span
+                                    className="visually-hidden">(current)</span></Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/coffee' className="nav-link" id="link">Coffee Beans</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/single' className="nav-link" id="link">Single Serve</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/about' className="nav-link" id="link">About Us</Link>
+                            </li>
+                        </ul>
 
-                   
-                     {/* <span><a href="/cart"><i className="bi bi-cart" id="icon"></i></a></span> */}
-                    <Button onClick={handleShow} className="bi bi-cart" id="icon"></Button>
 
-                    <form className="d-flex my-2 my-lg-0">
-                    <button
-                    type="button"
-                    className="bi bi-person-circle px-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#accountModal"
-                    id="icon"></button>
-                    </form>
+                        {/* <button onClick={handleShow} className="bi bi-cart" id="icon"></button> */}
+                        <button
+                            type="button"
+                            className="bi bi-cart"
+                            data-bs-toggle="modal"
+                            data-bs-target="#cartModal"
+                            id="icon"></button>
+                        <button
+                            type="button"
+                            className="bi bi-person-circle px-3"
+                            data-bs-toggle="modal"
+                            data-bs-target="#accountModal"
+                            id="icon"></button>
+
+                    </div>
+                </div>
+            </nav>
+
+
+            <div
+                className="modal fade in"
+                id="cartModal"
+                tabindex="-1"
+                aria-labelledby="cartModalLabel"
+                aria-hidden="true"
+            >
+                <div className="container" id="cart-content">
+                    <div className="modal-dialog modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h3 className='modal-title'>Your Cart</h3>
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+
+                                ></button>
+
+                            </div>
+
+                            <div className="modal-body">
+                                {productsCount > 0 ?
+                                    <>
+                                        <h5>Items in your cart:</h5>
+                                        {cart.items.map((currentProduct, idx) => (
+                                            <CartProduct key={idx} id={currentProduct.id} quantity={currentProduct.quantity}></CartProduct>
+                                        ))}
+                                        <h5>Subtotal ({productsCount}): {cart.getTotalCost().toFixed(2)}</h5>
+                                        <Button variant="success">
+                                            Purchase items!
+                                        </Button>
+                                    </>
+
+                                    : <h4>There are no items in your cart!</h4>
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
 
-    
-        <Modal show={show} onHide={handleClose} >
-                        <Modal.Header closeButton>
-                        <Modal.Title>Shopping Cart</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            {productsCount > 0 ?
-                            <>
-                                <p>Items in your cart:</p>
-                                {cart.items.map( (currentProduct, idx) => (
-                                       <CartProduct key={idx} id={currentProduct.id} quantity={currentProduct.quantity}></CartProduct>
-                                ))}
-                                 <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
-                                <Button variant="success">
-                                    Purchase items!
-                                    </Button>
-                            </>
-                        
-                                :<h1>There are no items in your cart!</h1>
-                        }
-                        </Modal.Body>
-                    </Modal>
-         
+            {/* <Modal show={show} onHide={handleClose} >
+                <Modal.Header closeButton>
+                    <Modal.Title>Shopping Cart</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {productsCount > 0 ?
+                        <>
+                            <p>Items in your cart:</p>
+                            {cart.items.map((currentProduct, idx) => (
+                                <CartProduct key={idx} id={currentProduct.id} quantity={currentProduct.quantity}></CartProduct>
+                            ))}
+                            <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
+                            <Button variant="success">
+                                Purchase items!
+                            </Button>
+                        </>
 
-           {/* <Modal show={show} onHide={handleClose}></Modal> */}
+                        : <h1>There are no items in your cart!</h1>
+                    }
+                </Modal.Body>
+            </Modal> */}
+
+
+            {/* <Modal show={show} onHide={handleClose}></Modal> */}
             <div
                 className="modal fade in"
                 id="accountModal"
@@ -94,14 +140,14 @@ const NavBar = () => {
                 aria-hidden="true"
             >
                 <div className="modal-dialog modal-dialog-scrollable">
-                    <div className="modal-content">
+                    <div className="modal-content" id="account-content">
                         <div className="modal-header">
                             <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                            style={{ marginRight: '30rem' }}
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+
                             ></button>
                         </div>
                         <div className="modal-body">

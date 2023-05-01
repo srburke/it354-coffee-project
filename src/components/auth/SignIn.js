@@ -37,39 +37,39 @@ const SignIn = () => {
 
     return (
         <>
-                            
-                            <Card className="signIn-card">
-                                <Card.Body>
-                                    <h2 className='text-center mb-4' style={{ color: "black" }}>Sign In</h2>
-                                    <Form>
-                                        <Form.Group id="email">
-                                            <div className="mb-3">
-                                                <label for="" className="form-label" style={{ color: "black" }}>Email</label>
-                                                <input type="email" onChange={(e) => setEmail(e.target.value)} class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com" required></input>
-                                            </div>
-                                        </Form.Group>
-                                        <Form.Group id="password">
-                                            <div className="mb-3">
-                                                <label for="" class="form-label" style={{ color: "black" }}>Password</label>
-                                                <input type="password" onChange={(e) => setPassword(e.target.value)} class="form-control" name="" id="" placeholder="" required></input>
-                                            </div>
-                                        </Form.Group>
-                                        <Button className="w-100" onClick={signIn}>
-                                            Sign In
-                                        </Button>
 
-                                        <Button className="w-100" style={{ marginTop: "1rem" }} onClick={signInWithGoogle}>
-                                            Sign In With Google
-                                        </Button>
-                                    </Form>
-                                </Card.Body>
+            <Card className="signIn-card">
+                <Card.Body>
+                    <h2 className='text-center mb-4' style={{ color: "black" }}>Sign In</h2>
+                    <Form>
+                        <Form.Group id="email">
+                            <div className="mb-3">
+                                <label for="" className="form-label" style={{ color: "black" }}>Email</label>
+                                <input type="email" onChange={(e) => setEmail(e.target.value)} className="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com" required></input>
+                            </div>
+                        </Form.Group>
+                        <Form.Group id="password">
+                            <div className="mb-3">
+                                <label for="" class="form-label" style={{ color: "black" }}>Password</label>
+                                <input type="password" onChange={(e) => setPassword(e.target.value)} className="form-control" name="" id="" placeholder="" required></input>
+                            </div>
+                        </Form.Group>
+                        <Button className="w-100" onClick={signIn}>
+                            Sign In
+                        </Button>
+
+                        <Button className="w-100" style={{ marginTop: "1rem" }} onClick={signInWithGoogle}>
+                            Sign In With Google
+                        </Button>
+                    </Form>
+                </Card.Body>
 
             </Card>
             <span className="cardOption">OR</span>
             <SignUp />
-                       
-                     
-          
+
+
+
 
 
 

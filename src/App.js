@@ -20,15 +20,15 @@ function App() {
     <CartProvider>
 
       <NavBar />
-    
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/coffee' element={<Coffee />} />
         <Route path='/single' element={<Single />} />
         <Route path='/cart' element={<Cart />} />
       </Routes>
-   
-    </CartProvider>
+
+    </CartProvider >
 
   );
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
-import { auth, googleProvider } from '../../config/firebase'
+import { auth, googleProvider, db } from '../../config/firebase'
+import { addDoc, collection } from 'firebase/firestore'
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/style.css'
@@ -11,19 +12,29 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate
 
-    const signUp = async () => {
-        try {
-            const user = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(user)
-        } catch (err) {
-            console.error(err);
-        }
+    const signUp = (e) => {
+        e.preventDefault();
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
 
-    };
+                addDoc(collection(db, "users"), {
+                    email: email, password: password, uid: user.uid
+                }).then(() => {
+                    setEmail('')
+                    setPassword('')
+                })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+            })
+    }
 
     const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
+            await addDoc(collection(db, "users"), { email: email, password: password });
         } catch (err) {
             console.error(err);
         }
