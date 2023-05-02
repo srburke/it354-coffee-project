@@ -1,5 +1,8 @@
 import { createContext, useState } from "react";
 import { productsArray, getProductData } from "./productsStore";
+import { collection, query, onSnapshot, getDocs } from "firebase/firestore";
+import { db } from "../config/firebase";
+import { useContext, useEffect } from 'react';
 
 export const CartContext = createContext({
     items: [],
@@ -75,16 +78,6 @@ export function CartProvider({ children }) {
                     return currentProduct.id != id;
                 })
         )
-    }
-
-    function getProductData(id) {
-        let productData = cartProducts.find(product => product.id === id)
-
-        if (productData == undefined) {
-            console.log("Product data does not exist for ID: " + id);
-            return undefined;
-        }
-        return productData;
     }
 
     function getTotalCost() {

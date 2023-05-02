@@ -30,9 +30,19 @@ const NavBar = (GetCurrentUser) => {
                                 <Link to='/' id="link" className="nav-link" aria-current="page">Home<span
                                     className="visually-hidden">(current)</span></Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to='/coffee-type/medium' className="nav-link" id="link">Coffee Beans</Link>
+                            <li class="nav-item dropdown" id="link">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Coffee Bags
+                                </a>
+                            <ul className="dropdown-menu">
+                                <li><a href='/coffee-type/light' className="nav-link" id='link'>Light</a></li>
+                                <li><a href='/coffee-type/medium' className="nav-link" id="link">Medium</a></li>
+                                <li><a href='/coffee-type/dark' className="nav-link" id="link">Dark</a></li>
+                            </ul>
                             </li>
+                            {/* <li className="nav-item">
+                                <Link to='/coffee-type/medium' className="nav-link" id="link">Coffee Beans</Link>
+                            </li> */}
                             <li className="nav-item">
                                 <Link to='/single' className="nav-link" id="link">Single Serve</Link>
                             </li>

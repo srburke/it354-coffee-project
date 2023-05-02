@@ -32,7 +32,16 @@ const Coffee = (props) => {
     }, [])
     console.log(props.type)
 
-   
+    function getProductData(id) {
+        let productData = products.find(product => product.id === id)
+    
+        if (productData == undefined) {
+            console.log("Product data does not exist for ID: " + id);
+            return undefined;
+        }
+    
+        return productData;
+    }
 
 
     return (
@@ -47,9 +56,15 @@ const Coffee = (props) => {
                             />
                         </Col>
                     ))}
+                
                 </Row>
 
-
+                {products.map((product) => (
+                    <productStore 
+                    key = { product.id }
+                    product={product}
+                    />
+                    ))}    
             </div>
 
         </>

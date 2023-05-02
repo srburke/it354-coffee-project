@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { CartContext } from './CartContext';
 import { useContext, useState, useEffect } from 'react';
 import { db } from '../config/firebase';
+import { collection, query, onSnapshot, getDocs } from "firebase/firestore";
 // import { getProductData } from './productsStore';
 
 const CartProduct = (props) => {
@@ -12,12 +13,22 @@ const CartProduct = (props) => {
 
     useEffect(() => {
         const getProduct = async () => {
-            const productRef = db.collection('products').doc(props.id);
-            const productDoc = await productRef.get();
-            if (productDoc.exists) {
-                setProductData({ id: productDoc.id, ...productDoc.data() });
-            }
-            setLoading(false);
+            
+            getDocs(collection(db, 'products')).then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    productData({ ...doc.data(), id: doc.id });
+                    console.log(doc.id, " => cart", doc.data());
+                });
+                setLoading(false);
+            }).catch((error) => {
+                console.log(error.message);
+            });
+            
+            // const productDoc = await productRef.get();
+            // if (productDoc.exists) {
+            //     setProductData({ id: productDoc.id, ...productDoc.data() });
+            // }
+            // setLoading(false);
         };
         getProduct();
     }, [props.id]);
