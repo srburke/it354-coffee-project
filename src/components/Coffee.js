@@ -6,6 +6,8 @@ import ProductCard from '../components/ProductCard';
 import Cart from '../components/Cart';
 import { collection, query, onSnapshot, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { useContext } from 'react';
+import { CartContext } from './CartContext';
 
 const Coffee = (props) => {
     const [products, setProducts] = useState([]);
@@ -30,15 +32,7 @@ const Coffee = (props) => {
     }, [])
     console.log(props.type)
 
-    function getProductData(id) {
-        let productData = products.find(product => product.id === id)
-
-        if (productData == undefined) {
-            console.log("Product data does not exist for ID: " + id);
-            return undefined;
-        }
-        return productData;
-    }
+   
 
 
     return (

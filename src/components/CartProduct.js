@@ -1,18 +1,49 @@
 import Button from 'react-bootstrap/Button';
 import { CartContext } from './CartContext';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { db } from '../config/firebase';
 // import { getProductData } from './productsStore';
 
 const CartProduct = (props) => {
     const cart = useContext(CartContext);
 
-    const id = props.id;
-    const quantity = props.quantity;
-    const price = props.productPrice
-    const productData = getProductData(id);
+    const [productData, setProductData] = useState({});
+    const [loading, setLoading] = useState(true);
 
-
-
+    useEffect(() => {
+        const getProduct = async () => {
+            const productRef = db.collection('products').doc(props.id);
+            const productDoc = await productRef.get();
+            if (productDoc.exists) {
+                setProductData({ id: productDoc.id, ...productDoc.data() });
+            }
+            setLoading(false);
+        };
+        getProduct();
+    }, [props.id]);
+    
+    const handleDelete = () => {
+        cart.deleteFromCart(props.id);
+        db.collection('carts').doc(cart.cartId).update({
+            [props.id]: null,
+        });
+    };
+    
+    const handleAddOne = () => {
+        cart.addOneToCart(props.id);
+        db.collection('carts').doc(cart.cartId).update({
+            [props.id]: cart.getProductQuantity(props.id) + 1,
+        });
+    };
+    
+    const handleRemoveOne = () => {
+        cart.removeOneFromCart(props.id);
+        db.collection('carts').doc(cart.cartId).update({
+          [props.id]: cart.getProductQuantity(props.id) - 1,
+        });
+      };
+    
+    
     return (
 
         <div className="container">
@@ -22,23 +53,23 @@ const CartProduct = (props) => {
                 </div>
 
                 <div className="col-4 col-sm-3">
-                    <p>${(quantity * price).toFixed(2)}</p>
+                    <p>${(props.quantity * productData.productPrice).toFixed(2)}</p>
                 </div>
 
                 {/* <div class="w-100 d-none d-md-block"></div> */}
 
                 <div className="col-2 col-sm-2">
-                    <Button variant="danger" onClick={() => cart.deleteFromCart(id)}> <i class="bi bi-trash3"></i></Button>
+                    <Button variant="danger" onClick={handleDelete}> <i class="bi bi-trash3"></i></Button>
                 </div>
             </div>
 
-            {cart.getProductQuantity(productData.id) > 0 ?
+            {cart.getProductQuantity(props.id) > 0 ?
                 <>
                     <div className="row justify-content-start">
                         <div className="col align-self-start">
-                            <button onClick={() => cart.addOneToCart(id)} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-plus-circle-fill"></i></button>
-                            <span style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>{quantity} total</span>
-                            <button onClick={() => cart.removeOneFromCart(id)} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-dash-circle-fill"></i></button>
+                            <button onClick={handleAddOne} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-plus-circle-fill"></i></button>
+                            <span style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>{props.quantity} total</span>
+                            <button onClick={handleRemoveOne} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-dash-circle-fill"></i></button>
                         </div>
 
                     </div>
