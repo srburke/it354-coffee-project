@@ -21,8 +21,9 @@
 // }, [])
 // console.log(props.type)
 
-
-// function getProductData(id) {
+// export function getProductData(id) {
+    
+    
 //     let productData = products.find(product => product.id === id)
 
 //     if (productData == undefined) {
@@ -32,6 +33,4 @@
 
 //     return productData;
 // }
-
-
 // export { getProductData };
