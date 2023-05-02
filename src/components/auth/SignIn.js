@@ -12,26 +12,34 @@ const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
+    const [successMsg, setSuccessMsg] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
     console.log(auth?.currentUser?.email);
 
     const signIn = async () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential)
+                setSuccessMsg("Logged in successfully!")
+                setEmail('')
+                setPassword('')
+                setTimeout(() => {
+                    setSuccessMsg("");
+                }, 3000);
+                // console.log(userCredential)
             }).catch((error) => {
-                console.log(error)
-            })
+                const errorCode = error.code;
+                console.log(error.message)
+                if (error.message == 'Firebase: Error(auth/invalid-email).') {
+                    setErrorMsg('Please fill all required fields');
+                }
+                if (error.message == 'Firebase: Error (auth/user-not-found).') {
+                    setErrorMsg('Email not found!');
+                }
+                if (error.message == 'Firebase: Error (auth/wrong-password).') {
+                    setErrorMsg('Invalid Password!');
+                }
+            });
 
-
-    };
-
-    const signInWithGoogle = async () => {
-        try {
-            await signInWithPopup(auth, googleProvider);
-        } catch (err) {
-            console.error(err);
-        }
 
     };
 
@@ -41,6 +49,16 @@ const SignIn = () => {
             <Card className="signIn-card">
                 <Card.Body>
                     <h2 className='text-center mb-4' style={{ color: "black" }}>Sign In</h2>
+                    {successMsg && <>
+                        <div className='success-msg'>
+                            {successMsg}
+                        </div>
+                    </>}
+                    {errorMsg && <>
+                        <div className='error-msg'>
+                            {errorMsg}
+                        </div>
+                    </>}
                     <Form>
                         <Form.Group id="email">
                             <div className="mb-3">
@@ -56,10 +74,6 @@ const SignIn = () => {
                         </Form.Group>
                         <Button className="w-100" onClick={signIn}>
                             Sign In
-                        </Button>
-
-                        <Button className="w-100" style={{ marginTop: "1rem" }} onClick={signInWithGoogle}>
-                            Sign In With Google
                         </Button>
                     </Form>
                 </Card.Body>

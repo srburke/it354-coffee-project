@@ -1,15 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import { CartContext } from './CartContext';
 import { useContext } from 'react';
-import { getProductData } from './productsStore';
+// import { getProductData } from './productsStore';
 
-function CartProduct(props) {
+const CartProduct = (props) => {
     const cart = useContext(CartContext);
 
     const id = props.id;
     const quantity = props.quantity;
+    const price = props.productPrice
     const productData = getProductData(id);
-    const product = props.product
+
 
 
     return (
@@ -17,11 +18,11 @@ function CartProduct(props) {
         <div className="container">
             <div className="row align-items-start">
                 <div className="col-6 col-sm-6 ">
-                    <p>{productData.title}</p>
+                    <p>{productData.productName}</p>
                 </div>
 
                 <div className="col-4 col-sm-3">
-                    <p>${(quantity * productData.price).toFixed(2)}</p>
+                    <p>${(quantity * price).toFixed(2)}</p>
                 </div>
 
                 {/* <div class="w-100 d-none d-md-block"></div> */}
@@ -35,16 +36,16 @@ function CartProduct(props) {
                 <>
                     <div className="row justify-content-start">
                         <div className="col align-self-start">
-                            <button onClick={() => cart.addOneToCart(productData.id)} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-plus-circle-fill"></i></button>
+                            <button onClick={() => cart.addOneToCart(id)} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-plus-circle-fill"></i></button>
                             <span style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>{quantity} total</span>
-                            <button onClick={() => cart.removeOneFromCart(productData.id)} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-dash-circle-fill"></i></button>
+                            <button onClick={() => cart.removeOneFromCart(id)} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-dash-circle-fill"></i></button>
                         </div>
 
                     </div>
                 </>
                 :
-                <Button variant="primary" onClick={() => cart.addOneToCart(productData.id)}>Add to Cart</Button>
-
+                // <Button variant="primary" onClick={() => cart.addOneToCart(id)}>Add to Cart</Button>
+                <p></p>
             }
 
             <hr></hr>

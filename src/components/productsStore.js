@@ -1,36 +1,37 @@
 
-const productsArray = [
-    {
-        id: "1",
-        title: "Starbucks Spring Day Blend",
-        price: "17.49",
-        Image: "./images/StarSpringDayBlend.jpeg"
-    },
-    {
-        id: "2",
-        title: "Starbucks Caffè Verona",
-        price: "10.00",
-        Image: "./images/StarCaffeVerona.jpeg"
-    },
-    {
-        id: "3",
-        title: "Coffee pods 15ct",
-        price: "12.99",
-        Image: "coffeeBeans.jpg"
-    },
-]
+// const [products, setProducts] = useState([]);
+
+// useEffect(() => {
+//     const getProducts = () => {
+//         const productsArray = [];
+//         const path = `products-${props.type.toUpperCase()}`;
+//         console.log(props);
+
+//         getDocs(collection(db, path)).then((querySnapshot) => {
+//             querySnapshot.forEach((doc) => {
+//                 productsArray.push({ ...doc.data(), id: doc.id })
+//                 console.log(doc.id, " => ", doc.data());
+//             })
+//             setProducts(productsArray);
+//         }).catch((error) => {
+//             console.log(error.message);
+//         });
+//     }
+//     getProducts();
+// }, [])
+// console.log(props.type)
 
 
-function getProductData(id){
-    let productData = productsArray.find(product => product.id === id)
+// function getProductData(id) {
+//     let productData = products.find(product => product.id === id)
 
-    if(productData == undefined){
-console.log("Product data does not exist for ID: " + id);
-        return undefined;
-    }
+//     if (productData == undefined) {
+//         console.log("Product data does not exist for ID: " + id);
+//         return undefined;
+//     }
 
-    return productData;
-}
+//     return productData;
+// }
 
 
-export {productsArray, getProductData};
+// export { getProductData };

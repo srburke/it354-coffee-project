@@ -1,22 +1,18 @@
 import React from 'react'
 import '../styles/navbar.css';
 import Account from './Account.js';
-import SignIn from '../components/auth/SignIn.js';
-import SignUp from '../components/auth/SignUp.js';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, container, Modal } from 'react-bootstrap';
-import CartProvider, { CartContext } from './CartContext';
-import CartProduct from './CartProduct.js'
+import Cart from './Cart.js'
 
 
-const NavBar = () => {
+
+
+const NavBar = (GetCurrentUser) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const cart = useContext(CartContext);
-    const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
 
     return (
         <>
@@ -35,7 +31,7 @@ const NavBar = () => {
                                     className="visually-hidden">(current)</span></Link>
                             </li>
                             <li className="nav-item">
-                                <Link to='/coffee' className="nav-link" id="link">Coffee Beans</Link>
+                                <Link to='/coffee-type/medium' className="nav-link" id="link">Coffee Beans</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to='/single' className="nav-link" id="link">Single Serve</Link>
@@ -88,20 +84,7 @@ const NavBar = () => {
                             </div>
 
                             <div className="modal-body">
-                                {productsCount > 0 ?
-                                    <>
-                                        <h5>Items in your cart:</h5>
-                                        {cart.items.map((currentProduct, idx) => (
-                                            <CartProduct key={idx} id={currentProduct.id} quantity={currentProduct.quantity}></CartProduct>
-                                        ))}
-                                        <h5>Subtotal ({productsCount}): {cart.getTotalCost().toFixed(2)}</h5>
-                                        <Button variant="success">
-                                            Purchase items!
-                                        </Button>
-                                    </>
-
-                                    : <h4>There are no items in your cart!</h4>
-                                }
+                                <Cart />
                             </div>
                         </div>
                     </div>
