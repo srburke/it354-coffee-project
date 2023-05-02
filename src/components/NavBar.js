@@ -18,7 +18,7 @@ const NavBar = (GetCurrentUser) => {
         <>
             <nav className="navbar navbar-expand-md navbar-dark">
                 <div className="container">
-                    <a className="navbar-brand" href="/">Coffee</a>
+                    <a className="navbar-brand" href="/"> The Coffee Caravan</a>
                     <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                         aria-label="Toggle navigation">
