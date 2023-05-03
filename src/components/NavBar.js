@@ -16,16 +16,17 @@ const NavBar = (GetCurrentUser) => {
 
     return (
         <>
-            <nav className="navbar navbar-expand-md navbar-dark">
+
+            <nav className="navbar navbar-expand-lg navbar-dark">
                 <div className="container">
-                    <a className="navbar-brand" href="/"> The Coffee Caravan</a>
+                    <a className="navbar-brand " href="/">Coffee Caravan</a>
                     <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="collapsibleNavId">
-                        <ul className="navbar-nav m-auto mt-2 mt-lg-0 nav justify-content-center">
+                        <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link to='/' id="link" className="nav-link" aria-current="page">Home<span
                                     className="visually-hidden">(current)</span></Link>
@@ -34,11 +35,11 @@ const NavBar = (GetCurrentUser) => {
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Coffee Bags
                                 </a>
-                            <ul className="dropdown-menu">
-                                <li><a href='/coffee-type/light' className="nav-link" id='link'>Light</a></li>
-                                <li><a href='/coffee-type/medium' className="nav-link" id="link">Medium</a></li>
-                                <li><a href='/coffee-type/dark' className="nav-link" id="link">Dark</a></li>
-                            </ul>
+                                <ul className="dropdown-menu">
+                                    <li><a href='/coffee-type/light' className="nav-link" id='link'>Light</a></li>
+                                    <li><a href='/coffee-type/medium' className="nav-link" id="link">Medium</a></li>
+                                    <li><a href='/coffee-type/dark' className="nav-link" id="link">Dark</a></li>
+                                </ul>
                             </li>
                             {/* <li className="nav-item">
                                 <Link to='/coffee-type/medium' className="nav-link" id="link">Coffee Beans</Link>
@@ -46,9 +47,7 @@ const NavBar = (GetCurrentUser) => {
                             <li className="nav-item">
                                 <Link to='/single' className="nav-link" id="link">Single Serve</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to='/about' className="nav-link" id="link">About Us</Link>
-                            </li>
+
                         </ul>
 
 
@@ -69,6 +68,7 @@ const NavBar = (GetCurrentUser) => {
                     </div>
                 </div>
             </nav>
+
 
 
             <div

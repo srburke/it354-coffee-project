@@ -1,13 +1,13 @@
 import React from 'react'
 import '../styles/home.css';
-
-
+import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 
 const Home = () => {
     return (
         <div className="container-fluid" id="home">
             <div className='container' id="about">
-               <img src="./images/coffeeBeans.jpg" alt="Coffee Beans" class="images "/>
+                <h1 className="home-title">More than <br /> a Beverage.</h1>
+
                 <div className="row justify-content-center align-items-center g-2">
                     <div className="col">
 
@@ -24,6 +24,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

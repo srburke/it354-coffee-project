@@ -1,19 +1,15 @@
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import '../styles/productCard.css';
-import { createContext, useContext } from "react";
-import { CartContext } from './CartContext';
-
 
 const ProductCard = ({ product, addToCart }) => {
     // const product = props.product
     // const { products } = useContext(ProductContext);
     // const productQuantity = cart.getProductQuantity(product.id);
-    const handleAddToCart = () => {
-        addToCart(product);
-    }
+    // const handleAddToCart = () => {
+    //     addToCart();
+    // }
 
     return (
-
         <>
 
             <Card>
@@ -24,7 +20,7 @@ const ProductCard = ({ product, addToCart }) => {
                     <Card.Text>${product.productPrice}</Card.Text>
 
                     <Button variant="primary" data-bs-toggle="modal"
-                        data-bs-target="#cartModal" onClick={handleAddToCart}>Add to Cart</Button>
+                        data-bs-target="#cartModal" onClick={addToCart}>Add to Cart</Button>
                     {/* <Button variant="primary" data-bs-toggle="modal"
                         data-bs-target="#cartModal" onClick={dispatch({ type: "ADD_TO_CART", id: product.product.id, product })}>Add to Cart</Button> */}
 

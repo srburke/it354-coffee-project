@@ -1,14 +1,27 @@
 import Button from 'react-bootstrap/Button';
-import { CartContext } from './CartContext';
 import { useContext, useState, useEffect } from 'react';
 import { db } from '../config/firebase';
-import { collection, query, onSnapshot, getDocs } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 // import { getProductData } from './productsStore';
 
-export const CartProduct = ({ cartProduct, addOneToCart }) => {
+export const CartProduct = (props) => {
 
-    const handleIncrement = () => {
-        addOneToCart(cartProduct)
+    const [productQty, setProductQty] = useState(props.cartProduct.quantity);
+
+    let price = props.cartProduct.productPrice;
+
+    const exactPrice = price * productQty
+
+    const handleIncrement = async () => {
+        setProductQty(productQty + 1);
+
+        const prodRef = doc(db, `cart-${props.userid}`, `${props.cartProduct.id}`)
+        await updateDoc(prodRef, {
+            quantity: productQty + 1
+        }).then(() => {
+            console.log('Quantity increased')
+        })
+        console.log(prodRef)
     }
 
     return (
@@ -16,11 +29,11 @@ export const CartProduct = ({ cartProduct, addOneToCart }) => {
 
             <div className="row align-items-start">
                 <div className="col-6 col-sm-6">
-                    <p>{cartProduct.ProductName}</p>
+                    <p>{props.cartProduct.productName}</p>
                 </div>
 
                 <div className="col-4 col-sm-3">
-                    <p>${(cartProduct.qty * cartProduct.ProductPrice).toFixed(2)}</p>
+                    <p>${exactPrice}</p>
                 </div>
 
                 {/* <div class="w-100 d-none d-md-block"></div> */}
@@ -30,12 +43,12 @@ export const CartProduct = ({ cartProduct, addOneToCart }) => {
                 </div>
             </div>
 
-            {cartProduct.qty > 0 ?
+            {productQty > 0 ?
                 <>
                     <div className="row justify-content-start">
                         <div className="col align-self-start">
                             <button onClick={handleIncrement} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-plus-circle-fill"></i></button>
-                            <span style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>{cartProduct.qty} total</span>
+                            <span style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>{props.cartProduct.quantity} total</span>
                             <button style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-dash-circle-fill"></i></button>
                         </div>
 

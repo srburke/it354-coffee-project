@@ -1,79 +1,67 @@
 import React from 'react'
 import { useState, useContext, useEffect } from 'react';
-import { collection, updateDoc, getDocs, where, addDoc, doc, setDoc } from "firebase/firestore";
+import { collection, updateDoc, getDocs, where, addDoc, doc, query } from "firebase/firestore";
 import { Button, container, Modal } from 'react-bootstrap';
 import CartProduct from './CartProduct.js'
 import { db, auth } from "../config/firebase";
 
 const Cart = () => {
-    function GetUserUid() {
-        const [uid, setUid] = useState(null);
+
+    function GetCurrentUser() {
+        const [user, setUser] = useState('');
+
         useEffect(() => {
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    setUid(user.uid);
+            auth.onAuthStateChanged(userlogged => { /**  Listens for changes to the auth state. If a user is logged in, getusers function is called  */
+                if (userlogged) {
+                    const getUsers = async () => { // Queries the users collection using query method and where clause to filter by the logged-in user's uid.
+                        const q = query(collection(db, "users"), where("uid", "==", userlogged.uid));
+                        // console.log(q);
+                        const data = await getDocs(q); // getDocs method is used to retrieve the documents matching the query
+                        setUser(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))); // setUser function is used to update the user state with the retrieved data
+                    };
+                    getUsers();
+                } else {
+                    setUser(null);
                 }
             })
         }, [])
-        return uid;
+        return user
     }
-    const uid = GetUserUid();
+    const loggeduser = GetCurrentUser();
+    // console.log(loggeduser);
+
 
 
     const [cartProducts, setCartProducts] = useState([]);
-    useEffect(() => {
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                const newCartProduct = [];
-                const path = "Cart " + user.uid;
-                console.log(path);
+    if (loggeduser) {
+        const getCart = async () => {
+            const cartArray = [];
+            const path = `cart-${loggeduser[0].uid}`;
 
-                getDocs(collection(db, path)).then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => (
-                        newCartProduct.push({ ...doc.data(), id: doc.id })
-
-                    ));
-                    setCartProducts(newCartProduct);
-                })
-            } else {
-                console.log("User is not signed in to retrieve shopping cart.")
-            }
-        })
-    }, [])
-
-
-    const addOneToCart = (cartProduct) => {
-        const updateCart = {
-            ...cartProduct,
-            qty: cartProduct.qty + 1,
-            TotalProductPrice: (cartProduct.qty + 1) * cartProduct.ProductPrice
-        }
-        // update in Firestore
-        const user = auth.currentUser;
-        const path = `Cart ${user.uid}/${cartProduct.id}`;
-        const docRef = doc(db, path);
-        if (user) {
-            setDoc(docRef, updateCart).then(() => {
-                console.log("increase")
+            getDocs(collection(db, path)).then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    cartArray.push({ ...doc.data(), id: doc.id })
+                });
+                setCartProducts(cartArray);
+            }).catch((error) => {
+                console.log(error.message);
             })
-        } else {
-            console.log('user is not logged in to increment')
         }
-
+        getCart();
     }
+
+
 
 
     const productsCount = cartProducts.reduce((sum, product) => sum + product.qty, 0);
     return (
         <>
-
-
             {cartProducts.length > 0 ?
                 <>
                     <h5>Items in your cart:</h5>
 
                     {cartProducts.map((cartProduct) => (
-                        <CartProduct key={cartProduct.id} cartProduct={cartProduct} addOneToCart={addOneToCart} />
+                        <CartProduct key={cartProduct.id} cartProduct={cartProduct} userid={loggeduser[0].uid} />
                     ))}
 
                     <h5>Subtotal ({productsCount}): {cartProducts.TotalProductPrice}</h5>

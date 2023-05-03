@@ -3,14 +3,13 @@ import Home from './components/Home';
 import Coffee from './components/Coffee';
 import Single from './components/Single';
 import Cart from './components/Cart';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { auth, db } from './config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CartProvider, { CartContextProvider } from './components/CartContext';
+
 import AddProduct from './components/AddProduct';
-import { ProductContextProvider } from './components/ProductContext';
 
 function App() {
   //const {products} = props
@@ -20,7 +19,6 @@ function App() {
   */
   function GetCurrentUser() {
     const [user, setUser] = useState('');
-    const usersCollectionRef = collection(db, "users");
 
     useEffect(() => {
       auth.onAuthStateChanged(userlogged => { /**  Listens for changes to the auth state. If a user is logged in, getusers function is called  */
@@ -46,8 +44,7 @@ function App() {
 
   return (
 
-    <CartProvider>
-
+    <>
       <NavBar GetCurrentUser={GetCurrentUser()} />
 
       <Routes>
@@ -58,8 +55,8 @@ function App() {
         <Route path='/single' element={<Single />} />
         <Route path='/addproduct' element={<AddProduct />} />
       </Routes>
-    </CartProvider>
 
+    </>
 
 
   );

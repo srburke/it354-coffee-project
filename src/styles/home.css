@@ -21,17 +21,26 @@
 } */
 
 #about {
-    background: white;
-    border-radius: 15px;
+    background: #f6f6f6;
+    border-radius: 5px;
     position: relative;
     z-index: 1;
-
+    padding-left: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-.images{
+.home-title {
+    font-size: 3.75rem;
+    line-height: 1;
+    font-family: 'Heebo';
+}
+
+.images {
     width: 200px;
     height: auto;
 }
+
 /* 
 #test {
 

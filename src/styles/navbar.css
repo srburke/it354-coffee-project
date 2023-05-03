@@ -1,22 +1,23 @@
 .navbar {
-    /* background-color: green;*/
     color: antiquewhite;
     z-index: 9;
+
 }
 
 .navbar-brand {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
     font-family: 'Abril Fatface';
     color: antiquewhite !important;
 }
 
 .nav-item {
     font-family: 'Heebo';
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .nav-link {
-    margin-right: 15px;
-    margin-left: 15px;
+
     color: antiquewhite;
     font-size: 1.1rem
 }

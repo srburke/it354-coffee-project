@@ -2,39 +2,27 @@ import React, { useEffect, useState } from 'react';
 import '../styles/style.css';
 import '../styles/coffee.css';
 import { Row, Col } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import Cart from '../components/Cart';
-import { collection, query, onSnapshot, getDocs, where, addDoc } from "firebase/firestore";
+import { collection, query, doc, getDocs, getDoc, where, addDoc } from "firebase/firestore";
 import { db, auth } from "../config/firebase";
-import { useContext } from 'react';
-import { CartContext } from './CartContext';
 
 const Coffee = (props) => {
-
-    function GetUserUid() {
-        const [uid, setUid] = useState(null);
-        useEffect(() => {
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    setUid(user.uid);
-                }
-            })
-        }, [])
-        return uid;
-    }
-
-    const uid = GetUserUid();
+    const [products, setProducts] = useState([]);
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+    const { type, id } = useParams()
+    const [currentProd, setCurrentProd] = useState('');
 
     function GetCurrentUser() {
         const [user, setUser] = useState('');
-        const usersCollectionRef = collection(db, "users");
-
         useEffect(() => {
             auth.onAuthStateChanged(userlogged => { /**  Listens for changes to the auth state. If a user is logged in, getusers function is called  */
                 if (userlogged) {
                     const getUsers = async () => { // Queries the users collection using query method and where clause to filter by the logged-in user's uid.
                         const q = query(collection(db, "users"), where("uid", "==", userlogged.uid));
-                        console.log(q);
+                        // console.log(q);
                         const data = await getDocs(q); // getDocs method is used to retrieve the documents matching the query
                         setUser(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))); // setUser function is used to update the user state with the retrieved data
                     };
@@ -47,16 +35,12 @@ const Coffee = (props) => {
         return user
     }
     const loggeduser = GetCurrentUser();
-    console.log(loggeduser);
-
-    const [products, setProducts] = useState([]);
 
 
     useEffect(() => {
         const getProducts = () => {
             const productsArray = [];
             const path = `products-${props.type.toUpperCase()}`;
-            console.log(props);
 
             getDocs(collection(db, path)).then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -70,38 +54,35 @@ const Coffee = (props) => {
         }
         getProducts();
     }, [])
-    // console.log(props.type)
 
-    let Product;
-    const addToCart = (product) => {
-        if (uid !== null) {
-            Product = product;
-            Product['qty'] = 1;
-            Product['TotalProductPrice'] = Product.qty * Product.productPrice;
-            addDoc(collection(db, 'Cart ' + uid), {
-                id: product.id,
-                ProductName: product.productName,
-                ProductPrice: product.productPrice,
-                qty: Product.qty,
-                TotalProductPrice: Product.TotalProductPrice
+    function GetProductData() {
+        useEffect(() => {
+            const getProduct = async () => {
+                const docRef = doc(db, `products-${type.toUpperCase()}`, id);
+                const docSnap = await getDoc(docRef);
+                setCurrentProd(docSnap.data());
+            };
+            getProduct();
+        }, [])
+        return currentProd;
+    }
+    GetProductData();
+    console.log('test:', currentProd)
 
+    const addToCart = () => {
+        if (loggeduser) {
+            addDoc(collection(db, `cart-${loggeduser[0].uid}`), {
+                currentProd, quantity: 1
             }).then(() => {
-                console.log('Successfully added to cart');
-
+                console.log('Product added to cart');
+                setSuccessMsg('Product added to cart');
+            }).catch((error) => {
+                console.log(error.message);
             })
+        } else {
+            setErrorMsg('You need to login first');
         }
     }
-
-    // const addToCart = () => {
-    //     if (uid !== null) {
-    //         addDoc(collection(db, 'Cart ' + loggeduser[0].uid), {
-    //             products, quantity: 1
-    //         }).then(() => {
-    //             console.log('Successfully added to cart');
-
-    //         })
-    //     }
-    // }
 
     return (
         <>
