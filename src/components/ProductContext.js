@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
 import { db } from '../config/firebase';
-import { updateDoc, collection } from 'firebase/firestore';
+import { updateDoc, collection, getDoc, onSnapshot, docChanges } from 'firebase/firestore';
 
 export const ProductContext = createContext();
 
@@ -9,12 +9,11 @@ export class ProductContextProvider extends React.Component {
         products: []
     }
 
-    componentDidMount() {
+    componentDidMount = async () => {
         const prevProduct = this.state.products;
-        db.collection('Products').onSnapshot(snapshot => {
-            let changes = snapshot.docChanges();
-
-            changes.forEach(change => {
+        const productsRef = collection(db, "products-MEDIUM");
+        getDoc(collection(db, 'products-MEDIUM')).onSnapshot(snapshot => {
+            snapshot.docChanges().forEach(change => {
                 if (change.type === 'added') {
                     prevProduct.push({
                         ProductID: change.doc.id,
@@ -28,8 +27,13 @@ export class ProductContextProvider extends React.Component {
                     products: prevProduct
                 })
             })
+
+
+
+
         })
     }
+
 
     render() {
         return (
@@ -39,6 +43,3 @@ export class ProductContextProvider extends React.Component {
         )
     }
 }
-
-
-export default ProductContext

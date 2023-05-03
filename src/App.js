@@ -8,7 +8,7 @@ import { auth, db } from './config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CartProvider from './components/CartContext';
+import CartProvider, { CartContextProvider } from './components/CartContext';
 import AddProduct from './components/AddProduct';
 import { ProductContextProvider } from './components/ProductContext';
 
@@ -42,6 +42,8 @@ function App() {
   const loggeduser = GetCurrentUser();
   console.log(loggeduser);
 
+
+
   return (
 
     <CartProvider>
@@ -56,8 +58,8 @@ function App() {
         <Route path='/single' element={<Single />} />
         <Route path='/addproduct' element={<AddProduct />} />
       </Routes>
+    </CartProvider>
 
-    </CartProvider >
 
 
   );
