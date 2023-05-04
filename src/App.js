@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AddProduct from './components/AddProduct';
+import IndividualProduct from './components/IndividualProduct';
 
 function App() {
   //const {products} = props
@@ -54,6 +55,7 @@ function App() {
         <Route path='/coffee-type/dark' element={<Coffee type={'Dark'} />} />
         <Route path='/single' element={<Single />} />
         <Route path='/addproduct' element={<AddProduct />} />
+        <Route path='/product/:type/:id' element={<IndividualProduct />} />
       </Routes>
 
     </>

@@ -1,27 +1,48 @@
 import Button from 'react-bootstrap/Button';
 import { useContext, useState, useEffect } from 'react';
 import { db } from '../config/firebase';
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 // import { getProductData } from './productsStore';
 
-export const CartProduct = (props) => {
+export const CartProduct = ({ cartProduct, userid }) => {
 
-    const [productQty, setProductQty] = useState(props.cartProduct.quantity);
+    const [productQty, setProductQty] = useState(cartProduct.quantity);
 
-    let price = props.cartProduct.productPrice;
+    let price = cartProduct.currentProd.productPrice;
 
     const exactPrice = price * productQty
 
     const handleIncrement = async () => {
         setProductQty(productQty + 1);
 
-        const prodRef = doc(db, `cart-${props.userid}`, `${props.cartProduct.id}`)
+        const prodRef = doc(db, `cart-${userid}`, `${cartProduct.id}`)
         await updateDoc(prodRef, {
             quantity: productQty + 1
         }).then(() => {
             console.log('Quantity increased')
         })
-        console.log(prodRef)
+        // console.log(prodRef)
+    }
+
+    const handleDecrement = async () => {
+
+        if (productQty >= 1) {
+            setProductQty(productQty - 1);
+            const prodRef = doc(db, `cart-${userid}`, `${cartProduct.id}`)
+            await updateDoc(prodRef, {
+                quantity: productQty - 1
+            }).then(() => {
+                console.log('Quantity decreased')
+            })
+            // console.log(prodRef)
+        }
+
+    }
+
+    const handleRemove = async () => {
+        await deleteDoc(doc(db, `cart-${userid}`, `${cartProduct.id}`)).then(() => {
+            console.log('Doc removed');
+        })
     }
 
     return (
@@ -29,17 +50,15 @@ export const CartProduct = (props) => {
 
             <div className="row align-items-start">
                 <div className="col-6 col-sm-6">
-                    <p>{props.cartProduct.productName}</p>
+                    <p>{cartProduct.currentProd.productName}</p>
                 </div>
 
                 <div className="col-4 col-sm-3">
-                    <p>${exactPrice}</p>
+                    <p>${exactPrice.toFixed(2)}</p>
                 </div>
 
-                {/* <div class="w-100 d-none d-md-block"></div> */}
-
                 <div className="col-2 col-sm-2">
-                    <Button variant="danger"> <i class="bi bi-trash3"></i></Button>
+                    <Button onClick={handleRemove} variant="danger"> <i class="bi bi-trash3"></i></Button>
                 </div>
             </div>
 
@@ -48,8 +67,8 @@ export const CartProduct = (props) => {
                     <div className="row justify-content-start">
                         <div className="col align-self-start">
                             <button onClick={handleIncrement} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-plus-circle-fill"></i></button>
-                            <span style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>{props.cartProduct.quantity} total</span>
-                            <button style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-dash-circle-fill"></i></button>
+                            <span style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>{cartProduct.quantity} total</span>
+                            <button onClick={handleDecrement} style={{ fontSize: "1.1rem", color: "black" }}><i class="bi bi-dash-circle-fill"></i></button>
                         </div>
 
                     </div>

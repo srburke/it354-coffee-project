@@ -53,10 +53,10 @@ const Cart = () => {
 
 
 
-    const productsCount = cartProducts.reduce((sum, product) => sum + product.qty, 0);
+    const productsCount = cartProducts.reduce((sum, product) => sum + product.quantity, 0);
     return (
         <>
-            {cartProducts.length > 0 ?
+            {productsCount > 0 ?
                 <>
                     <h5>Items in your cart:</h5>
 
