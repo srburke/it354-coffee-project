@@ -25,6 +25,12 @@ const AddProduct = () => {
         }
 
     }
+    
+    /** Prevents the default form submission behavior and uploads the selected image file 
+     * to Firebase Storage using the uploadBytes function. After the image is uploaded,
+     * the download URL for the image is retrieved using getDownloadURL function. 
+     * Adds the product data, including the image URL, to Firestore using the addDoc 
+     * function */
     const addProduct = (e) => {
         e.preventDefault();
         // console.log(productname, productPrice, productImg);
@@ -47,35 +53,6 @@ const AddProduct = () => {
                 })
             }).catch(err => setError(err.message));
     }
-
-    // uploadTask.on('state_change', snapshot => {
-    //     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     console.log(progress);
-    // }, err => {
-    //     setError(err.message);
-    // }, () => {
-    //     ref('product-images').child(productImg.name).getDownloadURL().then(url => {
-    //         db.collection('Product').add({
-    //             companyName: companyName,
-    //             productName: productName,
-    //             beanType: beanType,
-    //             roastLevel: roastLevel,
-    //             productDesc: productDesc,
-    //             productPrice: Number(productPrice),
-    //             productImg: url
-    //         }).then(() => {
-    //             setCompanyName('');
-    //             setProductName('');
-    //             setBeanType('');
-    //             setRoastLevel('');
-    //             setProductDesc('');
-    //             setProductPrice(0);
-    //             setProductImg('');
-    //             setError('');
-    //             document.getElementById('file').value = '';
-    //         }).catch(err => setError(err.message));
-    //     })
-    // })
 
     return (
         <div className='container'>

@@ -2,12 +2,8 @@ import React from 'react'
 import '../styles/navbar.css';
 import Account from './Account.js';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, container, Modal } from 'react-bootstrap';
+import { Link} from 'react-router-dom';
 import Cart from './Cart.js'
-
-
-
 
 const NavBar = (GetCurrentUser) => {
     const [show, setShow] = useState(false);
@@ -54,9 +50,7 @@ const NavBar = (GetCurrentUser) => {
                             </li>
 
                         </ul>
-
-
-                        {/* <button onClick={handleShow} className="bi bi-cart" id="icon"></button> */}
+                        
                         <button
                             type="button"
                             className="bi bi-cart"
@@ -106,30 +100,6 @@ const NavBar = (GetCurrentUser) => {
                 </div>
             </div>
 
-            {/* <Modal show={show} onHide={handleClose} >
-                <Modal.Header closeButton>
-                    <Modal.Title>Shopping Cart</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {productsCount > 0 ?
-                        <>
-                            <p>Items in your cart:</p>
-                            {cart.items.map((currentProduct, idx) => (
-                                <CartProduct key={idx} id={currentProduct.id} quantity={currentProduct.quantity}></CartProduct>
-                            ))}
-                            <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
-                            <Button variant="success">
-                                Purchase items!
-                            </Button>
-                        </>
-
-                        : <h1>There are no items in your cart!</h1>
-                    }
-                </Modal.Body>
-            </Modal> */}
-
-
-            {/* <Modal show={show} onHide={handleClose}></Modal> */}
             <div
                 className="modal fade in"
                 id="accountModal"

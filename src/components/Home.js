@@ -1,8 +1,5 @@
 import React from 'react'
 import '../styles/home.css';
-import { Card, Button, Form, Row, Col } from 'react-bootstrap';
-
-// import '.../'
 
 const Home = () => {
     return (

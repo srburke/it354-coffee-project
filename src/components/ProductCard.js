@@ -1,4 +1,4 @@
-import { Card, Button, Form, Row, Col } from 'react-bootstrap';
+import { Card, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {

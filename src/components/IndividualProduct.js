@@ -1,5 +1,5 @@
 import { collection, query, doc, getDocs, getDoc, where, addDoc } from "firebase/firestore";
-import { Card, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { db, auth } from "../config/firebase";
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';

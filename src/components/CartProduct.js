@@ -1,8 +1,7 @@
 import Button from 'react-bootstrap/Button';
-import { useContext, useState, useEffect } from 'react';
+import { useState } from 'react';
 import { db } from '../config/firebase';
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
-// import { getProductData } from './productsStore';
 
 export const CartProduct = ({ cartProduct, userid }) => {
 
