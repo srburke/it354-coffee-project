@@ -45,7 +45,7 @@ function App() {
   return (
 
   
-      <div className='container-fluid' style={{background: "hsla(23, 39%, 9%, 1)"}}>
+      <div className='App' style={{background: "hsla(23, 39%, 9%, 1)"}}>
       <NavBar GetCurrentUser={GetCurrentUser()} />
 
       <Routes>
