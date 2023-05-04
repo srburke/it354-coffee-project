@@ -1,9 +1,7 @@
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import Coffee from './components/AllProducts';
 import Single from './components/Single';
-import Cart from './components/Cart';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { auth, db } from './config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
@@ -45,7 +43,9 @@ function App() {
   return (
 
   
-      <div className='App' style={{background: "hsla(23, 39%, 9%, 1)"}}>
+    <div className='App' style={{background: "hsla(23, 39%, 9%, 1)"}}>
+  
+      
       <NavBar GetCurrentUser={GetCurrentUser()} />
 
       <Routes>
