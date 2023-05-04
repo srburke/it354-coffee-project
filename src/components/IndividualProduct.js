@@ -63,26 +63,36 @@ const IndividualProduct = () => {
     return (
         <>
             {currentProd ?
-                <Card>
-                    <Card.Body>
-                        <Card.Img variant="top" src={currentProd.productImg} className="images" />
-                        <Card.Title>{currentProd.companyName} - {currentProd.productName}</Card.Title>
-                        <Card.Text>${currentProd.productPrice}</Card.Text>
+                <div className="container-fluid">
 
-                        <Button variant="primary" data-bs-toggle="modal"
-                            data-bs-target="#cartModal" onClick={addToCart}>Add to Cart</Button>
-                    </Card.Body>
+                    <div className="card mb-3">
+                        <div className="row g-0">
+                            <div className="col-md-4">
+                                <img src={currentProd.productImg} id="prod-image" style={{ width: "100%" }} />
+                            </div>
+                            <div className="col-md-8">
+                                <div className="card-body" style={{ paddingTop: "3rem" }}>
+                                    <h5 className="card-title">{currentProd.companyName} - {currentProd.productName}</h5>
+                                    <p className="card-text">${currentProd.productPrice}</p>
+                                    <p className="card-text">{currentProd.productDesc}</p>
+                                    <p className="card-text"><small className="text-body-secondary">Roast: {currentProd.roastLevel}</small></p>
+                                    <p className="card-text"><small className="text-body-secondary">Bean Type: {currentProd.beanType}</small></p>
+                                    <Button variant="primary" data-bs-toggle="modal"
+                                        data-bs-target="#cartModal" onClick={addToCart}>Add to Cart</Button>
+                                </div>
 
-                    {successMsg && <>
-                        <div>{successMsg}</div>
-                    </>}
-                    {errorMsg && <>
-                        <div>{errorMsg}</div>
-                    </>}
-                </Card >
+                                {successMsg && <>
+                                    <div>{successMsg}</div>
+                                </>}
+                                {errorMsg && <>
+                                    <div>{errorMsg}</div>
+                                </>}
+                            </div>
+                        </div >
+                    </div>
 
+                </div>
                 : <p>Test..</p>}
-
         </>
     )
 }

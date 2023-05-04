@@ -20,12 +20,12 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                const initialCartVal = 0;
+
                 console.log(user);
                 /** creates db collection users in Firebase Firestore; everytime a user signs up they're email, password, and userId is stored.
                 */
                 addDoc(collection(db, "users"), {
-                    email: email, password: password, uid: user.uid, cart: initialCartVal
+                    email: email, password: password, uid: user.uid
                 }).then(() => {
                     setSuccessMsg('Signup successful!')
                     setEmail('')
