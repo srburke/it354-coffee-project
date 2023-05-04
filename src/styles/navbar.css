@@ -17,7 +17,7 @@
 }
 
 .nav-link {
-
+    text-decoration: none;
     color: antiquewhite;
     font-size: 1.1rem
 }
@@ -42,6 +42,7 @@ span a:active {
     text-decoration: none;
     color: inherit;
 }
+
 
 #accountModal {
     position: absolute;
