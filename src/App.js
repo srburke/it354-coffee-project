@@ -35,7 +35,7 @@ function App() {
     }, [])
     return user
   }
-  const loggeduser = GetCurrentUser();
+
 
 
 
