@@ -65,33 +65,33 @@ const IndividualProduct = () => {
             {currentProd ?
                 <div className="container-fluid">
 
-                    <div className="card mb-3">
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src={currentProd.productImg} id="prod-image" style={{ width: "100%" }} />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body" style={{ paddingTop: "3rem" }}>
-                                    <h5 className="card-title">{currentProd.companyName} - {currentProd.productName}</h5>
-                                    <p className="card-text">${currentProd.productPrice}</p>
-                                    <p className="card-text">{currentProd.productDesc}</p>
-                                    <p className="card-text"><small className="text-body-secondary">Roast: {currentProd.roastLevel}</small></p>
-                                    <p className="card-text"><small className="text-body-secondary">Bean Type: {currentProd.beanType}</small></p>
-                                    <Button variant="primary" data-bs-toggle="modal"
-                                        data-bs-target="#cartModal" onClick={addToCart}>Add to Cart</Button>
-                                </div>
+                    <div className="row g-0" style={{ backgroundColor: "#fff", marginTop: "5rem", borderRadius: ".25rem" }}>
+                        <div className="col-md-4" style={{ borderRadius: ".25rem" }}>
+                            <img src={currentProd.productImg} id="prod-image" style={{ width: "100%", height: "auto" }} />
+                        </div>
+                        <div className="col-md-8" style={{ backgroundColor: "#E3DAC9", paddingTop: "0", paddingLeft: "3rem", borderRadius: "0 .25rem .25rem 0", boxShadow: "0 16px 32px rgba(22, 39, 106, 0.251)", zIndex: "1" }}>
+                            <div className="card-body" style={{ paddingTop: "3rem", paddingRight: "12rem", lineHeight: "1.5", fontFamily: "heebo" }}>
+                                <h4 className="card-title" style={{ lineHeight: "1.5" }}>{currentProd.companyName} - {currentProd.productName}</h4>
+                                <p className="card-text">${currentProd.productPrice}</p>
+                                <p className="card-text">{currentProd.productDesc}</p>
 
-                                {successMsg && <>
-                                    <div>{successMsg}</div>
-                                </>}
-                                {errorMsg && <>
-                                    <div>{errorMsg}</div>
-                                </>}
+                                <p className="card-text"><small className="text-body-secondary">Roast: {currentProd.roastLevel}</small></p>
+                                <p className="card-text"><small className="text-body-secondary">Bean Type: {currentProd.beanType}</small></p>
+                                <Button data-bs-toggle="modal"
+                                    data-bs-target="#cartModal" style={{ background: "#191970", borderColor: "#191970" }} onClick={addToCart}>Add to Cart</Button>
                             </div>
-                        </div >
-                    </div>
 
+                            {successMsg && <>
+                                <div>{successMsg}</div>
+                            </>}
+                            {errorMsg && <>
+                                <div>{errorMsg}</div>
+                            </>}
+                        </div>
+                    </div >
                 </div>
+
+
                 : <p>Test..</p>}
         </>
     )
