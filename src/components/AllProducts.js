@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/style.css';
-import '../styles/coffee.css';
 import { Row, Col } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
-import Cart from '../components/Cart';
-import { collection, query, doc, getDocs, getDoc, where, addDoc } from "firebase/firestore";
+import ProductCard from './ProductCard';
+import { collection, getDocs } from "firebase/firestore";
 import { db, auth } from "../config/firebase";
 
-const Coffee = (props) => {
+const AllProducts = (props) => {
     const [products, setProducts] = useState([]);
 
+    /** Fetches products from Firestore when the component mounts, using the
+     * getDocs function from Firebase to retrieve documents from the Firestore collection.
+     * Adding each document's data to an array and sets the products state variable to
+     * that array.
+     */
     useEffect(() => {
         const getProducts = () => {
             const productsArray = [];
@@ -31,9 +33,9 @@ const Coffee = (props) => {
 
 
     return (
-        <>
-            <div className="container">
-                <Row xs={1} md={3} className="g-4" id="coffeeRow">
+        
+            <div className="container" style={{ background: "hsla(23, 39%, 9%, 1)"}}>
+                <Row xs={1} md={3} className="g-4" style={{marginTop: "1.5rem", paddingBottom: "3rem"}}>
                     {products.map((product) => (
                         <Col align="center">
                             <ProductCard
@@ -44,27 +46,12 @@ const Coffee = (props) => {
                     ))}
 
                 </Row>
+                
+            
+        </div>
 
 
-            </div>
-
-        </>
+        
     )
 }
-export default Coffee;
-
-
-
-
-
-
-{/* <ProductCard /> */ }
-
-
-{/* <Row xs={1} md={3} className="g-4" id="coffeeRow">
-                    {productsArray.map((product, idx) => (
-                        <Col align="center" key={idx}>
-                            <ProductCard product={product} />
-                        </Col>
-                    ))}
-                </Row> */}
+export default AllProducts;

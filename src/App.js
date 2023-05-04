@@ -1,6 +1,6 @@
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import Coffee from './components/Coffee';
+import Coffee from './components/AllProducts';
 import Single from './components/Single';
 import Cart from './components/Cart';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -8,13 +8,12 @@ import { auth, db } from './config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import AddProduct from './components/AddProduct';
 import IndividualProduct from './components/IndividualProduct';
+import AllProducts from './components/AllProducts';
+
 
 function App() {
-  //const {products} = props
-
   /** Retrieves the current user from Firebase authentication and Firestore db. Keeps user logged in upon 
    *  page refresh, getting the current user's information.
   */
@@ -45,20 +44,22 @@ function App() {
 
   return (
 
-    <>
+  
+      <div className='container-fluid' style={{background: "hsla(23, 39%, 9%, 1)"}}>
       <NavBar GetCurrentUser={GetCurrentUser()} />
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/coffee-type/light' element={<Coffee type={'Light'} />} />
-        <Route path='/coffee-type/medium' element={<Coffee type={'Medium'} />} />
-        <Route path='/coffee-type/dark' element={<Coffee type={'Dark'} />} />
+        <Route path='/coffee-type/light' element={<AllProducts type={'Light'} />} />
+        <Route path='/coffee-type/medium' element={<AllProducts type={'Medium'} />} />
+        <Route path='/coffee-type/dark' element={<AllProducts type={'Dark'} />} />
         <Route path='/single' element={<Single />} />
         <Route path='/addproduct' element={<AddProduct />} />
         <Route path='/product/:type/:id' element={<IndividualProduct />} />
       </Routes>
-
-    </>
+      
+</div>
+   
 
 
   );

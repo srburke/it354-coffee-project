@@ -1,8 +1,7 @@
 import Button from 'react-bootstrap/Button';
-import { useContext, useState, useEffect } from 'react';
+import { useState } from 'react';
 import { db } from '../config/firebase';
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
-// import { getProductData } from './productsStore';
 
 export const CartProduct = ({ cartProduct, userid }) => {
 
@@ -26,7 +25,7 @@ export const CartProduct = ({ cartProduct, userid }) => {
 
     const handleDecrement = async () => {
 
-        if (productQty >= 1) {
+        if (productQty > 1) {
             setProductQty(productQty - 1);
             const prodRef = doc(db, `cart-${userid}`, `${cartProduct.id}`)
             await updateDoc(prodRef, {
@@ -81,68 +80,8 @@ export const CartProduct = ({ cartProduct, userid }) => {
             <hr></hr>
         </div >
     )
-
-    //  <h5>Subtotal (): {cart.getTotalCost().toFixed(2)}</h5>
-    //  <Button variant="success">
-    //      Purchase items!
-    //  </Button>
-
-    // <div className="container">
-    //     <h4>{productData.title}</h4>
-    //     <h5>{quantity} total</h5>
-    //     <h5>${(quantity * productData.price).toFixed(2)}</h5>
-
-    //     <Button className="w-50" style={{ marginTop: "1rem", marginLeft: "5rem" }} onClick={() => cart.deleteFromCart(id)}>Remove</Button>
-    //     <hr></hr>
-    // </div>
-
 }
 
 export default CartProduct;
 
 
-// const [productData, setProductData] = useState({});
-// const [loading, setLoading] = useState(true);
-
-// useEffect(() => {
-//     const getProduct = async () => {
-
-//         getDocs(collection(db, 'products')).then((querySnapshot) => {
-//             querySnapshot.forEach((doc) => {
-//                 productData({ ...doc.data(), id: doc.id });
-//                 console.log(doc.id, " => cart", doc.data());
-//             });
-//             setLoading(false);
-//         }).catch((error) => {
-//             console.log(error.message);
-//         });
-
-//         // const productDoc = await productRef.get();
-//         // if (productDoc.exists) {
-//         //     setProductData({ id: productDoc.id, ...productDoc.data() });
-//         // }
-//         // setLoading(false);
-//     };
-//     getProduct();
-// }, [props.id]);
-
-// const handleDelete = () => {
-//     cart.deleteFromCart(props.id);
-//     db.collection('carts').doc(cart.cartId).update({
-//         [props.id]: null,
-//     });
-// };
-
-// const handleAddOne = () => {
-//     cart.addOneToCart(props.id);
-//     db.collection('carts').doc(cart.cartId).update({
-//         [props.id]: cart.getProductQuantity(props.id) + 1,
-//     });
-// };
-
-// const handleRemoveOne = () => {
-//     cart.removeOneFromCart(props.id);
-//     db.collection('carts').doc(cart.cartId).update({
-//         [props.id]: cart.getProductQuantity(props.id) - 1,
-//     });
-// };

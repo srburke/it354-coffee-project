@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
-import { auth, googleProvider } from '../../config/firebase'
+import { auth } from '../../config/firebase'
 import { signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/style.css'
