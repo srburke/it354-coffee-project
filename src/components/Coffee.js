@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/style.css';
-import '../styles/coffee.css';
 import { Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
@@ -31,9 +30,9 @@ const Coffee = (props) => {
 
 
     return (
-        <>
-            <div className="container">
-                <Row xs={1} md={3} className="g-4" id="coffeeRow">
+        
+            <div className="container" style={{ background: "hsla(23, 39%, 9%, 1)"}}>
+                <Row xs={1} md={3} className="g-4" style={{marginTop: "1.5rem", paddingBottom: "3rem"}}>
                     {products.map((product) => (
                         <Col align="center">
                             <ProductCard
@@ -44,27 +43,12 @@ const Coffee = (props) => {
                     ))}
 
                 </Row>
+                
+            
+        </div>
 
 
-            </div>
-
-        </>
+        
     )
 }
 export default Coffee;
-
-
-
-
-
-
-{/* <ProductCard /> */ }
-
-
-{/* <Row xs={1} md={3} className="g-4" id="coffeeRow">
-                    {productsArray.map((product, idx) => (
-                        <Col align="center" key={idx}>
-                            <ProductCard product={product} />
-                        </Col>
-                    ))}
-                </Row> */}

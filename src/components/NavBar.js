@@ -47,9 +47,9 @@ const NavBar = (GetCurrentUser) => {
                                     Single Serve
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a href='/coffee-type/light' className="nav-link" id='link'>Light Roast</a></li>
-                                    <li><a href='/coffee-type/medium' className="nav-link" id="link">Medium Roast</a></li>
-                                    <li><a href='/coffee-type/dark' className="nav-link" id="link">Dark Roast</a></li>
+                                    <li><a href='/' className="nav-link" id='link'>Light Roast</a></li>
+                                    <li><a href='/' className="nav-link" id="link">Medium Roast</a></li>
+                                    <li><a href='/' className="nav-link" id="link">Dark Roast</a></li>
                                 </ul>
                             </li>
 

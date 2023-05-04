@@ -8,9 +8,9 @@ import { auth, db } from './config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import AddProduct from './components/AddProduct';
 import IndividualProduct from './components/IndividualProduct';
+
 
 function App() {
   //const {products} = props
@@ -45,7 +45,8 @@ function App() {
 
   return (
 
-    <>
+  
+      <div className='container-fluid' style={{background: "hsla(23, 39%, 9%, 1)"}}>
       <NavBar GetCurrentUser={GetCurrentUser()} />
 
       <Routes>
@@ -57,8 +58,9 @@ function App() {
         <Route path='/addproduct' element={<AddProduct />} />
         <Route path='/product/:type/:id' element={<IndividualProduct />} />
       </Routes>
-
-    </>
+      
+</div>
+   
 
 
   );

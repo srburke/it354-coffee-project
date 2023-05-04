@@ -70,7 +70,7 @@ const IndividualProduct = () => {
                             <img src={currentProd.productImg} id="prod-image" style={{ width: "100%", height: "auto" }} />
                         </div>
                         <div className="col-md-8" style={{ backgroundColor: "#E3DAC9", paddingTop: "0", paddingLeft: "3rem", borderRadius: "0 .25rem .25rem 0", boxShadow: "0 16px 32px rgba(22, 39, 106, 0.251)", zIndex: "1" }}>
-                            <div className="card-body" style={{ paddingTop: "3rem", paddingRight: "12rem", lineHeight: "1.5", fontFamily: "heebo" }}>
+                            <div className="card-body" style={{ paddingTop: "3rem", paddingBottom: "3rem", paddingRight: "12rem", lineHeight: "1.5", fontFamily: "heebo" }}>
                                 <h4 className="card-title" style={{ lineHeight: "1.5" }}>{currentProd.companyName} - {currentProd.productName}</h4>
                                 <p className="card-text">${currentProd.productPrice}</p>
                                 <p className="card-text">{currentProd.productDesc}</p>
