@@ -32,14 +32,14 @@ function App() {
           };
           getUsers();
         } else {
-          setUser(null);
+          setUser('');
         }
       })
     }, [])
     return user
   }
   const loggeduser = GetCurrentUser();
-  console.log(loggeduser);
+
 
 
 

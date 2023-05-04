@@ -4,9 +4,10 @@ import { collection, updateDoc, getDocs, where, addDoc, doc, query } from "fireb
 import { Button, container, Modal } from 'react-bootstrap';
 import CartProduct from './CartProduct.js'
 import { db, auth } from "../config/firebase";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-
+    const navigate = useNavigate();
     function GetCurrentUser() {
         const [user, setUser] = useState('');
 
@@ -44,19 +45,31 @@ const Cart = () => {
                 });
                 setCartProducts(cartArray);
             }).catch((error) => {
-                console.log(error.message);
+                console.log(error);
             })
         }
         getCart();
     }
 
+    function getData(id) {
+        let productData = cartProducts.find(product => product.id === id);
+    }
 
+    function getTotalCost() {
+        let totalCost = 0;
+
+        cartProducts.map((item) => {
+            totalCost += (item.quantity * item.currentProd.productPrice)
+        });
+        return totalCost.toFixed(2);
+    }
 
 
     const productsCount = cartProducts.reduce((sum, product) => sum + product.quantity, 0);
+
     return (
         <>
-            {productsCount > 0 ?
+            {productsCount > 0 && loggeduser ?
                 <>
                     <h5>Items in your cart:</h5>
 
@@ -64,7 +77,7 @@ const Cart = () => {
                         <CartProduct key={cartProduct.id} cartProduct={cartProduct} userid={loggeduser[0].uid} />
                     ))}
 
-                    <h5>Subtotal ({productsCount}): {cartProducts.TotalProductPrice}</h5>
+                    <h5>Subtotal ({productsCount}): {getTotalCost()}</h5>
                     <Button variant="success">
                         Purchase items!
                     </Button>

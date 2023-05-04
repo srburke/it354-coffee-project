@@ -11,7 +11,6 @@ const IndividualProduct = () => {
     const { type, id } = useParams()
     const [currentProd, setCurrentProd] = useState('');
 
-
     function GetCurrentUser() {
         const [user, setUser] = useState('');
         useEffect(() => {
@@ -32,8 +31,6 @@ const IndividualProduct = () => {
         return user
     }
     const loggeduser = GetCurrentUser();
-
-
 
     function GetProductData() {
         useEffect(() => {
@@ -74,12 +71,14 @@ const IndividualProduct = () => {
 
                         <Button variant="primary" data-bs-toggle="modal"
                             data-bs-target="#cartModal" onClick={addToCart}>Add to Cart</Button>
-                        {/* <Button variant="primary" data-bs-toggle="modal"
-                data-bs-target="#cartModal" onClick={dispatch({ type: "ADD_TO_CART", id: product.product.id, product })}>Add to Cart</Button> */}
-
                     </Card.Body>
 
-
+                    {successMsg && <>
+                        <div>{successMsg}</div>
+                    </>}
+                    {errorMsg && <>
+                        <div>{errorMsg}</div>
+                    </>}
                 </Card >
 
                 : <p>Test..</p>}

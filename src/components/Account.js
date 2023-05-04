@@ -1,16 +1,19 @@
 import React from 'react'
 import '../styles/account.css';
 import SignIn from './auth/SignIn';
-import { auth } from '../config/firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { auth, db } from '../config/firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+
 
 const Account = () => {
 
     // const [showAccount, setAccount] = useState(true);
     const [authUser, setAuthUser] = useState(null);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
@@ -25,6 +28,8 @@ const Account = () => {
             listen();
         }
     }, [])
+
+
 
     const userSignOut = () => {
         signOut(auth).then(() => {
